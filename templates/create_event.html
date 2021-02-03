@@ -1,0 +1,37 @@
+<h3>Luo tapahtuma</h3>
+
+<form action="/create_event" method="POST" enctype="multipart/form-data">
+
+    <p>* = pakollinen</p>
+
+    Tapahtuman nimi *<br><input type="text" name="event_name"> <br>
+
+    <label for="category">Kategoria *<br></label>
+    <input list="categories" id="category" name="category">
+    <datalist id="categories">
+        {% for category in categories %}
+        <option>{{category}}
+            {% endfor %}
+    </datalist> <br>
+
+    <label for="description">Kuvaus *<br></label>
+    <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
+    Hinta <br><input type="text" name="price"> <br>
+    <label for="county">Maakunta *<br></label>
+    <input list="counties" id="county" name="county">
+    <datalist id="counties">
+        {% for county in counties %}
+        <option>{{county}}
+            {% endfor %}
+    </datalist> <br>
+    Kaupunki *<br><input type="text" name="city"> <br>
+    Paikka *<br><input type="text" name="locale"> <br>
+    Osoite *<br><input type="text" name="address"> <br>
+    Alkamisaika *<br><input type="datetime-local" name="starting_time"> <br>
+    Loppumisaika <br><input type="datetime-local" name="ending_time"> <br>
+
+    Kuvatiedosto <br><input type="file" name="file">
+    <br><br>
+    <input type="submit" value="Lähetä">
+</form>
+

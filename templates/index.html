@@ -1,4 +1,9 @@
-<h2>Tapahtumakalenteri</h2>
+<h1>Tapahtumakalenteri</h1>
+
+<h3>Tapahtumat:</h3>
+{% for event in events %}
+    <p>{{event}}</p>
+{% endfor %}
 
 <a href="/log_in">Kirjaudu sisään</a> <br>
 <a href="/sign_up">Luo käyttäjätunnus</a>
