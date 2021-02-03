@@ -5,5 +5,24 @@ import attributes
 
 @app.route("/")
 def index():
-    counties = attributes.get_counties()
-    return render_template("index.html", counties=counties)
+    return render_template("index.html")
+
+#users
+@app.route("/log_in", methods=["GET", "POST"])
+def log_in():
+    if request.method == "GET":
+        return render_template("log_in.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        return redirect("/")
+
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up():
+    if request.method == "GET":
+        return render_template("sign_up.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        return redirect("/")
+
