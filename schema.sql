@@ -1,0 +1,35 @@
+CREATE TABLE Users (
+    id SERIAL PRIMARY KEY,
+    Userame TEXT UNIQUE,
+    Password TEXT,
+    Admin BOOLEAN,
+    Suspended BOOLEAN
+);
+CREATE TABLE Events (
+    id SERIAL PRIMARY KEY,
+    Name TEXT,
+    User_id INTEGER REFERENCES Users,
+    Category_id INTEGER REFERENCES Categories,
+    County_id INTEGER REFERENCES Counties,
+    Locale TEXT,
+    City TEXT,
+    Address TEXT,
+    Description TEXT,
+    Starting_time TIMESTAMP,
+    Ending_time TIMESTAMP,
+    Price TEXT,
+    Image_id INTEGER REFERENCES Images
+);
+CREATE TABLE Categories (
+    id SERIAL PRIMARY KEY,
+    Category TEXT
+);
+CREATE TABLE Counties (
+    id SERIAL PRIMARY KEY,
+    County TEXT
+);
+CREATE TABLE Images (
+    id SERIAL PRIMARY KEY,
+    Name TEXT,
+    Data BYTEA
+);
