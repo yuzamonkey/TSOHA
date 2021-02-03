@@ -1,5 +1,7 @@
 # Tapahtumakalenteri
 
+https://tapahtumakalenteri.herokuapp.com/
+
 Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtumia voivat olla mm. konsertit, näyttelyt ja teatteriesitykset.
 
 ## Kuvaus
@@ -43,4 +45,4 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
 * Images
 
 ## Linkit
-Heroku-linkki, kun sovellus on valmiina julkaistavaksi
+https://tapahtumakalenteri.herokuapp.com/
