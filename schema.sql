@@ -5,6 +5,19 @@ CREATE TABLE Users (
     Admin BOOLEAN,
     Suspended BOOLEAN
 );
+CREATE TABLE Categories (
+    id SERIAL PRIMARY KEY,
+    Category TEXT
+);
+CREATE TABLE Counties (
+    id SERIAL PRIMARY KEY,
+    County TEXT
+);
+CREATE TABLE Images (
+    id SERIAL PRIMARY KEY,
+    Name TEXT,
+    Data BYTEA
+);
 CREATE TABLE Events (
     id SERIAL PRIMARY KEY,
     Name TEXT,
@@ -19,17 +32,4 @@ CREATE TABLE Events (
     Ending_time TIMESTAMP,
     Price TEXT,
     Image_id INTEGER REFERENCES Images
-);
-CREATE TABLE Categories (
-    id SERIAL PRIMARY KEY,
-    Category TEXT
-);
-CREATE TABLE Counties (
-    id SERIAL PRIMARY KEY,
-    County TEXT
-);
-CREATE TABLE Images (
-    id SERIAL PRIMARY KEY,
-    Name TEXT,
-    Data BYTEA
 );
