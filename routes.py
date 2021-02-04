@@ -14,11 +14,14 @@ def index():
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "GET":
-        return render_template("log_in.html")
+        return render_template("log_in.html", error=False)
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        return redirect("/")
+        if (users.log_in(username, password)):
+            return redirect("/")
+        else:
+            return render_template("log_in.html", error=True)
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():

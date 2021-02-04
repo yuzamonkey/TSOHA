@@ -1,4 +1,9 @@
 <h3>Kirjaudu sisään</h3>
+
+{% if error: %}
+    <p>Tarkista käyttäjätunnus tai salasana</p>
+{% endif %}
+
 <form action="/log_in" method="POST">
     <p>Käyttäjätunnus:<br>
         <input type="text" name="username">
