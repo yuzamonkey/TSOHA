@@ -23,3 +23,8 @@ def get_county_id(county_name):
     county_id = db.session.execute(f"SELECT id FROM Counties WHERE County='{county_name}'").fetchone()[0]
     return int(county_id)
 
+def add_image_and_return_id(name, data):
+    sql = "INSERT INTO images (name,data) VALUES (:name,:data) RETURNING id"
+    id = db.session.execute(sql, {"name":name,"data":data}).fetchone()[0]
+    db.session.commit()
+    return id

@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, make_response
 import attributes
 import events
 
+
 @app.route("/")
 def index():
     get_events = events.get_all()
@@ -39,8 +40,8 @@ def create_event():
         categories = attributes.get_categories()
         counties = attributes.get_counties()
         return render_template("create_event.html", categories=categories, counties=counties)
-        
-    #insert to db
+
+    # insert to db
     if request.method == "POST":
         event_name = request.form["event_name"]
         print("EVENT NAME ", event_name)
@@ -62,20 +63,26 @@ def create_event():
         print("STARTING TIME ", starting_time)
         ending_time = request.form["ending_time"]
         print("ENDING TIME ", ending_time)
+        # handle image
+        image = request.files["image"]
+        image_name = image.filename
+        data = image.read()
 
-        #handle image
+        image_id = attributes.add_image_and_return_id(image_name, data)
+        #image_id = attributes.get_image_id()
+
         events.add_event(
-            event_name, 
-            category_id, 
-            description, 
-            price, 
+            event_name,
+            category_id,
+            description,
+            price,
             county_id,
             city,
             locale,
             address,
             starting_time,
-            ending_time
+            ending_time,
+            image_id
         )
-        
-        return redirect("/")
 
+        return redirect("/")
