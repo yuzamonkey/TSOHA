@@ -2,7 +2,7 @@
 
 <h3>Tapahtumat:</h3>
 {% for event in events %}
-    <p>{{event}}</p>
+    <p>{{event}} <a href="/event/{{event[0]}}">tapahtumasivulle</a></p></p>
 {% endfor %}
 
 <a href="/log_in">Kirjaudu sisään</a> <br>

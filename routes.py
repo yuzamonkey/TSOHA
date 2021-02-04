@@ -6,12 +6,10 @@ import events
 
 @app.route("/")
 def index():
-    get_events = events.get_all()
-    return render_template("index.html", events=get_events)
+    all_events = events.get_all()
+    return render_template("index.html", events=all_events)
 
 # users
-
-
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "GET":
@@ -20,7 +18,6 @@ def log_in():
         username = request.form["username"]
         password = request.form["password"]
         return redirect("/")
-
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
@@ -32,7 +29,20 @@ def sign_up():
         return redirect("/")
 
 # events
+@app.route("/event/<int:id>")
+def event(id):
+    event = events.get_event_by_id(id)
+    image_id = events.get_image_id(id)
+    return render_template("event.html", event=event, image_id=image_id)
 
+    #image page
+
+@app.route("/event_image/<int:id>")
+def event_image(id):
+    image = attributes.get_image_data(id)
+    response = make_response(bytes(image))
+    response.headers.set("Content-Type","image/jpeg")
+    return response
 
 @app.route("/create_event", methods=["GET", "POST"])
 def create_event():
