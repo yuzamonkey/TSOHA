@@ -8,7 +8,7 @@ def format_date(date_result):
     return formatted_date
 
 def get_all():
-    sql_response = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
+    sql_response = db.session.execute("SELECT * FROM Events").fetchall()
     return sql_response
 
 def get_event_by_id(id):

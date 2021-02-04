@@ -1,6 +1,6 @@
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
-    Userame TEXT UNIQUE,
+    Username TEXT UNIQUE,
     Password TEXT,
     Admin BOOLEAN,
     Suspended BOOLEAN

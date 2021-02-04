@@ -1,5 +1,10 @@
 <h3>Luo käyttäjätunnus</h3>
-<form action="/log_in" method="POST">
+
+{% if error: %}
+    <p>Käyttäjätunnus on varattu</p>
+{% endif %}
+
+<form action="/sign_up" method="POST">
     <p>Käyttäjätunnus:<br>
         <input type="text" name="username">
     </p>
