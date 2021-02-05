@@ -1,0 +1,9 @@
+{% if error %}
+<p>Käyttäjätunnus on varattu</p>
+{% endif %}
+
+<form action="/edit_username" method="POST">
+    <p>Nykyinen käyttäjätunnus: {{username}}</p>
+    Uusi käyttäjätunnus: <input type="text" name="new_username"> <br>
+    <input type="submit" value="Muuta">
+</form>

@@ -1,6 +1,11 @@
 <h2>Käyttäjän {{username}} tiedot</h2>
 
+<p>Käyttäjätunnus: {{username}} <a href="/edit_username">Muokkaa</a></p>
+<p>Salasana: ***** <a href="/edit_password">Muokkaa</a></p>
+
 <h3>Tapahtumasi</h3>
 {% for event in users_events %}
     <p>{{event}} <a href="/edit_event/{{event[0]}}">Muokkaa</a></p> 
 {% endfor %}
+
+<a href="/">Etusivulle</a>

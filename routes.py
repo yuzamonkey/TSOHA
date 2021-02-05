@@ -19,7 +19,6 @@ def log_in():
         username = request.form["username"]
         password = request.form["password"]
         if (users.log_in(username, password)):
-            # logged in user stuff
             return redirect("/")
         else:
             return render_template("log_in.html", error=True)
@@ -30,6 +29,36 @@ def user_info():
     username = users.get_username(user_id)
     users_events = events.get_events_by_user_id(user_id)
     return render_template("user_info.html", username=username, users_events=users_events)
+
+@app.route("/edit_username", methods=["GET", "POST"])
+def edit_username():
+    user_id = users.session["user_id"]
+    username = users.get_username(user_id)
+    if request.method == "GET":
+        return render_template("edit_username.html", username=username, error=False)
+    if request.method == "POST":
+        new_username = request.form["new_username"]
+        print("NEW USERNAME == ", new_username)
+        if (users.edit_username(new_username, user_id)):
+            return redirect("/user_info")
+        else:
+            return render_template("edit_username.html", username=username, error=True)
+
+@app.route("/edit_password", methods=["GET", "POST"])
+def edit_password():
+    user_id = users.session["user_id"]
+    if request.method == "GET":
+        return render_template("edit_password.html", error=False)
+    if request.method == "POST":
+        current_password = request.form["current_password"]
+        new_password = request.form["new_password"]
+        if (users.verify_current_password(current_password, user_id)):
+            if (users.edit_password(new_password, user_id)):
+                return redirect("/user_info")
+            else:
+                return render_template("edit_password.html", error=False)
+        else:
+            return render_template("edit_password.html", error=True)
 
 @app.route("/log_out")
 def log_out():

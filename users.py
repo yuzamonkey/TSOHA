@@ -34,3 +34,30 @@ def get_username(id):
     sql = "SELECT username FROM Users WHERE id=:id"
     username = db.session.execute(sql, {"id":id}).fetchone()[0]
     return username
+
+def edit_username(new_username, id):
+    sql = "UPDATE Users SET username=:new_username WHERE id=:id"
+    try:
+        db.session.execute(sql, {"new_username":new_username,"id":id})
+        db.session.commit()
+        return True
+    except:
+        return False
+
+def verify_current_password(password, id):
+    sql = "SELECT password FROM Users WHERE id=:id"
+    current_password = db.session.execute(sql, {"id":id}).fetchone()[0]
+    if (check_password_hash(current_password, password)):
+        return True
+    else:
+        return False
+
+def edit_password(new_password, id):
+    new_password = generate_password_hash(new_password)
+    sql = "UPDATE Users SET password=:new_password WHERE id=:id"
+    try:
+        db.session.execute(sql, {"new_password":new_password, "id":id})
+        db.session.commit()
+        return True
+    except:
+        return False
