@@ -4,7 +4,7 @@ from flask import session
 
 
 def log_in(username, password):
-    sql = "SELECT password, id, username, admin FROM Users WHERE username=:username"
+    sql = "SELECT password, id, username, admin, suspended FROM Users WHERE username=:username"
     user = db.session.execute(sql, {"username":username}).fetchone()
     if (not user):
         return False
@@ -14,6 +14,7 @@ def log_in(username, password):
             session["user_id"] = user[1]
             session["username"] = user[2]
             session["is_admin"] = user[3]
+            session["suspended"] = user[4]
             return True
         else:
             return False

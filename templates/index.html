@@ -4,15 +4,20 @@
 <p>Hello admin</p>
 {% endif %}
 
+
+
 {% if session.user_id %}
 <p>Hellurei, {{session.username}}</p>
-<a href="/log_out">Kirjaudu ulos</a><br>
-<a href="/create_event">Luo tapahtuma</a><br>
-<a href="/user_info">Omat tiedot</a><br>
-<a href="/report">Raportoi ongelmasta</a>
+    {% if session.suspended %}
+        <p><b>SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
+    {% endif %}
+    <a href="/log_out">Kirjaudu ulos</a><br>
+    <a href="/create_event">Luo tapahtuma</a><br>
+    <a href="/user_info">Omat tiedot</a><br>
+    <a href="/report">Raportoi ongelmasta</a>
 {% else %}
-<a href="/log_in">Kirjaudu sisään</a> <br>
-<a href="/sign_up">Luo käyttäjätunnus</a>
+    <a href="/log_in">Kirjaudu sisään</a> <br>
+    <a href="/sign_up">Luo käyttäjätunnus</a>
 {% endif %}
 
 <h4>Suodata tuloksia</h4>

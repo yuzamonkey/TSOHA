@@ -122,6 +122,8 @@ def event_image(id):
 @app.route("/create_event", methods=["GET", "POST"])
 def create_event():
     if request.method == "GET":
+        if (session["suspended"]):
+            return "<h1>SUSPENDED ACCOUNT, NO ACCESS</h1>"
         categories = attributes.get_categories()
         counties = attributes.get_counties()
         return render_template("create_event.html", categories=categories, counties=counties)
@@ -175,6 +177,8 @@ def create_event():
 @app.route("/edit_event/<int:id>", methods=["GET", "POST"])
 def edit_event(id):
     if request.method == "GET":
+        if session["suspended"]:
+            return "<h1>SUSPENDED ACCOUNT, NO ACCESS</h1>"
         event = events.get_event_by_id(id)
         event_category = attributes.get_category_name(event[3])
         event_county = attributes.get_county_name(event[4])
