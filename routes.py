@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, make_response
+from flask import render_template, request, redirect, session, make_response 
 import attributes
 import events
 import users
@@ -19,9 +19,15 @@ def log_in():
         username = request.form["username"]
         password = request.form["password"]
         if (users.log_in(username, password)):
+            # logged in user stuff
             return redirect("/")
         else:
             return render_template("log_in.html", error=True)
+
+@app.route("/log_out")
+def log_out():
+    users.log_out()
+    return redirect("/")
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():

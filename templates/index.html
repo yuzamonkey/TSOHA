@@ -1,13 +1,19 @@
 <h1>Tapahtumakalenteri</h1>
 
-<h3>Tapahtumat:</h3>
-{% for event in events %}
-    <p>{{event}} <a href="/event/{{event[0]}}">tapahtumasivulle</a></p></p>
-{% endfor %}
-
+{% if session.user_id %}
+<p>Olet kirjautunut sisään</p>
+<a href="/log_out">Kirjaudu ulos</a><br>
+<a href="/create_event">Luo tapahtuma</a>
+{% else %}
 <a href="/log_in">Kirjaudu sisään</a> <br>
 <a href="/sign_up">Luo käyttäjätunnus</a>
+{% endif %}
+
+<h3>Tapahtumat:</h3>
+{% for event in events %}
+<p>{{event}} <a href="/event/{{event[0]}}">tapahtumasivulle</a></p>
+</p>
+{% endfor %}
+
 
 <br><br>
-
-<a href="/create_event">Luo tapahtuma</a>
