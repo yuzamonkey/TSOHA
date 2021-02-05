@@ -1,12 +1,7 @@
 from db import db
 import users
+import attributes
 
-
-def format_date(date_result):
-    date = date_result[:10]
-    time = date_result[-5:]
-    formatted_date = date + " " + time
-    return formatted_date
 
 def get_all():
     sql_response = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
@@ -14,7 +9,7 @@ def get_all():
 
 def get_event_by_id(id):
     sql = "SELECT * FROM Events WHERE id=:id"
-    event = db.session.execute(sql, {"id":id}).fetchall()
+    event = db.session.execute(sql, {"id":id}).fetchone()
     return event
 
 def get_events_by_user_id(user_id):
@@ -28,9 +23,8 @@ def get_image_id(event_id):
     return image_id
 
 def add_event(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
-    starting_time = format_date(starting_time)
-    ending_time = format_date(ending_time)
-    # add user_id
+    starting_time = attributes.format_date(starting_time)
+    ending_time = attributes.format_date(ending_time)
     sql = """
         INSERT INTO Events (
             name, 

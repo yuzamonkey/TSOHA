@@ -1,7 +1,46 @@
-<h2>Editoi tapahtumaasi täällä</h2>
+<h2>Muokkaa tapahtumaa <i>{{event[1]}}</i></h2>
 
-<h4>Muokattava tapahtuma: </h4>
 <p>{{event}}</p>
+
+<form action="/edit_event" method="POST" enctype="multipart/form-data">
+    <p>* = pakollinen</p>
+
+    Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}"> <br>
+
+    <label for="category">Kategoria *<br></label>
+    <select id="categories">
+        {% for category in categories %}
+            {% if category == event_category %}
+            <option selected>{{category}}
+            {% else %}
+            <option>{{category}}
+            {% endif %}
+        {% endfor %}
+    </select> <br>
+
+    <label for="description">Kuvaus *<br></label>
+    <textarea id="description" name="description" rows="4" cols="50">{{event[8]}}</textarea><br>
+    Hinta <br><input type="text" name="price" value="{{event[-2]}}"> <br>
+    <label for="county">Maakunta *<br></label>
+    <select id="counties">
+        {% for county in counties %}
+            {% if county == event_county %}
+            <option selected>{{county}}
+            {% else %}
+            <option>{{county}}
+            {% endif %}
+    {% endfor %}
+    </select> <br>
+    Kaupunki *<br><input type="text" name="city" value="{{event[6]}}"> <br>
+    Paikka *<br><input type="text" name="locale" value="{{event[5]}}"> <br>
+    Osoite *<br><input type="text" name="address" value="{{event[7]}}"> <br>
+    Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}"> <br>
+    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}"> <br>
+
+    Kuvatiedosto <br><input type="file" name="image">
+    <br><br>
+    <input type="submit" value="Lähetä">
+</form>
 
 
 

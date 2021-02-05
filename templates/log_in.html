@@ -1,7 +1,7 @@
 <h3>Kirjaudu sisään</h3>
 
 {% if error: %}
-    <p>Tarkista käyttäjätunnus tai salasana</p>
+    <p>{{message}}</p>
 {% endif %}
 
 <form action="/log_in" method="POST">

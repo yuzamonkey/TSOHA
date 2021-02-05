@@ -21,7 +21,7 @@ def log_in():
         if (users.log_in(username, password)):
             return redirect("/")
         else:
-            return render_template("log_in.html", error=True)
+            return render_template("log_in.html", error=True, message="Tarkista käyttäjätunnus tai salasana")
 
 @app.route("/user_info")
 def user_info():
@@ -42,13 +42,13 @@ def edit_username():
         if (users.edit_username(new_username, user_id)):
             return redirect("/user_info")
         else:
-            return render_template("edit_username.html", username=username, error=True)
+            return render_template("edit_username.html", username=username, error=True, message="Käyttäjätunnus on varattu")
 
 @app.route("/edit_password", methods=["GET", "POST"])
 def edit_password():
     user_id = users.session["user_id"]
     if request.method == "GET":
-        return render_template("edit_password.html", error=False)
+        return render_template("edit_password.html")
     if request.method == "POST":
         current_password = request.form["current_password"]
         new_password = request.form["new_password"]
@@ -56,9 +56,9 @@ def edit_password():
             if (users.edit_password(new_password, user_id)):
                 return redirect("/user_info")
             else:
-                return render_template("edit_password.html", error=False)
+                return render_template("edit_password.html", error=True, message="Päivittäminen epäonnistui")
         else:
-            return render_template("edit_password.html", error=True)
+            return render_template("edit_password.html", error=True, message="Syötit nykyisen salasanasi väärin")
 
 @app.route("/log_out")
 def log_out():
@@ -148,7 +148,25 @@ def create_event():
 
         return redirect("/")
 
-@app.route("/edit_event/<int:id>")
+@app.route("/edit_event/<int:id>", methods=["GET", "POST"])
 def edit_event(id):
-    event = events.get_event_by_id(id)
-    return render_template("edit_event.html", event=event)
+    if request.method == "GET":
+        event = events.get_event_by_id(id)
+        event_category = attributes.get_category_name(event[3])
+        event_county = attributes.get_county_name(event[4])
+        categories = attributes.get_categories()
+        counties = attributes.get_counties()
+        starting_time = attributes.timestamp_to_datetime(event[-4])
+        ending_time = attributes.timestamp_to_datetime(event[-3])
+        return render_template(
+            "edit_event.html", 
+            event=event, 
+            event_category=event_category, 
+            event_county=event_county, 
+            categories=categories, 
+            counties=counties,
+            starting_time=starting_time,
+            ending_time=ending_time
+            )
+    if request.method == "POST":
+        pass
