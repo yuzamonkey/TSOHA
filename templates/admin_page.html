@@ -13,9 +13,12 @@
 
 
 
-<h4>Poista tapahtuma</h4>
+<h4>Tapahtumat</h4>
 {% for event in events %}
-<p>{{event[0], event[1], event[9]}}<a href="/event/{{event[0]}}">Näytä</a> <a href="/delete_event/{{event[0]}}">Poista</a> </p>
+<p>{{event[0], event[1], event[9]}}
+    <a href="/event/{{event[0]}}">Näytä</a> 
+    <a href="/edit_event/{{event[0]}}">Muokkaa</a>
+    <a href="/delete_event/{{event[0]}}">Poista</a> </p>
 {% endfor %}
 
 
