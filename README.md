@@ -8,12 +8,12 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
 
 Sovelluksen perustoiminnallisuudet on tehty. Muutamia ominaisuuksia ei vielä ole, mutta ne tulevat myöhemmin:
  - Tapahtumien suodattaminen päivämäärän perusteella
- - Tapahtuman tietojen tarkistaminen ennen sen julkaisua. Pakolliset kentät tulisi olla täytetty ja tapahtuman alkamisajankohta tulla ennen loppumisajankohtaa.
+ - Tapahtuman tietojen tarkistaminen ennen sen julkaisua. Pakolliset kentät tulisi olla täytetty ja tapahtuman alkamisajankohta tulla ennen loppumisajankohtaa. Tapahtuman hinnan tulee olla hyvässä muodossa.
  - CSFR-haavoittuvuuden estäminen
 
  ### Testaus Herokussa
     
-Ylläpitäjän tunnus on ja salasana on admin. Peruskäyttäjän toimintojen tutkimista varten voi luoda uuden käyttäjätilin.
+Ylläpitäjän tunnus ja salasana on admin. Peruskäyttäjän toimintojen tutkimista varten voi luoda uuden käyttäjätilin. Jos jostain syystä uuden käyttäjän luominen ei onnistu, sovellukseen voi kirjautua kombolla username-password.
 
 ## Kuvaus
   
