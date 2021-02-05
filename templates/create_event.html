@@ -7,23 +7,21 @@
     Tapahtuman nimi *<br><input type="text" name="event_name"> <br>
 
     <label for="category">Kategoria *<br></label>
-    <input list="categories" id="category" name="category">
-    <datalist id="categories">
+    <select name="category">
         {% for category in categories %}
         <option>{{category}}
             {% endfor %}
-    </datalist> <br>
+    </select> <br>
 
     <label for="description">Kuvaus *<br></label>
     <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
     Hinta <br><input type="text" name="price"> <br>
     <label for="county">Maakunta *<br></label>
-    <input list="counties" id="county" name="county">
-    <datalist id="counties">
+    <select name="county">
         {% for county in counties %}
         <option>{{county}}
             {% endfor %}
-    </datalist> <br>
+    </select> <br>
     Kaupunki *<br><input type="text" name="city"> <br>
     Paikka *<br><input type="text" name="locale"> <br>
     Osoite *<br><input type="text" name="address"> <br>
