@@ -24,6 +24,13 @@ def log_in():
         else:
             return render_template("log_in.html", error=True)
 
+@app.route("/user_info")
+def user_info():
+    user_id = users.session["user_id"]
+    username = users.get_username(user_id)
+    users_events = events.get_events_by_user_id(user_id)
+    return render_template("user_info.html", username=username, users_events=users_events)
+
 @app.route("/log_out")
 def log_out():
     users.log_out()
@@ -111,3 +118,8 @@ def create_event():
         )
 
         return redirect("/")
+
+@app.route("/edit_event/<int:id>")
+def edit_event(id):
+    event = events.get_event_by_id(id)
+    return render_template("edit_event.html", event=event)

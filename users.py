@@ -16,10 +16,8 @@ def log_in(username, password):
         else:
             return False
 
-
 def log_out():
     del session["user_id"]
-
 
 def sign_up(username, password):
     password = generate_password_hash(password)
@@ -31,3 +29,8 @@ def sign_up(username, password):
     except:
         print("ERROR, USERNAME TAKEN")
         return False
+
+def get_username(id):
+    sql = "SELECT username FROM Users WHERE id=:id"
+    username = db.session.execute(sql, {"id":id}).fetchone()[0]
+    return username

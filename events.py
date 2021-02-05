@@ -1,4 +1,5 @@
 from db import db
+import users
 
 
 def format_date(date_result):
@@ -16,6 +17,11 @@ def get_event_by_id(id):
     event = db.session.execute(sql, {"id":id}).fetchall()
     return event
 
+def get_events_by_user_id(user_id):
+    sql = "SELECT * FROM Events WHERE user_id=:user_id"
+    events = db.session.execute(sql, {"user_id":user_id}).fetchall()
+    return events
+
 def get_image_id(event_id):
     sql = "SELECT image_id FROM Events WHERE id=:event_id"
     image_id = db.session.execute(sql, {"event_id":event_id}).fetchone()[0]
@@ -28,6 +34,7 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
     sql = """
         INSERT INTO Events (
             name, 
+            user_id,
             category_id, 
             description, 
             price, 
@@ -39,6 +46,7 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
             ending_time,
             image_id) values (
                 :name,
+                :user_id,
                 :category_id,
                 :description,
                 :price,
@@ -52,6 +60,7 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
                 )"""
     db.session.execute(sql, {
         "name":name, 
+        "user_id":users.session["user_id"],
         "category_id":category_id,
         "description":description,
         "price":price,
