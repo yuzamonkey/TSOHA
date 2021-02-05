@@ -7,8 +7,23 @@ import users
 
 @app.route("/")
 def index():
-    all_events = events.get_all()
-    return render_template("index.html", events=all_events)
+    #filters
+    if request.args:
+        category = request.args["category"]
+        county = request.args["county"]
+        if (category and not county):
+            selected_events = events.get_all_filter_by_category(attributes.get_category_id(category))
+        if (county and not category):
+            selected_events = events.get_all_filter_by_county(attributes.get_county_id(county))
+        if (county and category):
+            selected_events = events.get_all_filter_by_category_and_county(attributes.get_category_id(category), attributes.get_county_id(county)) 
+        else: 
+            selected_events = events.get_all()
+    else:
+        selected_events = events.get_all()
+    categories = attributes.get_categories()
+    counties = attributes.get_counties()
+    return render_template("index.html", events=selected_events, categories=categories, counties=counties)
 
 # users
 @app.route("/log_in", methods=["GET", "POST"])
@@ -29,6 +44,7 @@ def user_info():
     username = users.get_username(user_id)
     users_events = events.get_events_by_user_id(user_id)
     return render_template("user_info.html", username=username, users_events=users_events)
+
 
 @app.route("/edit_username", methods=["GET", "POST"])
 def edit_username():
@@ -86,8 +102,6 @@ def event(id):
     image_id = events.get_image_id(id)
     return render_template("event.html", event=event, image_id=image_id)
 
-    #image page
-
 @app.route("/event_image/<int:id>")
 def event_image(id):
     image = attributes.get_image_data(id)
@@ -130,7 +144,6 @@ def create_event():
         data = image.read()
 
         image_id = attributes.add_image_and_return_id(image_name, data)
-        #image_id = attributes.get_image_id()
 
         events.add_event(
             event_name,

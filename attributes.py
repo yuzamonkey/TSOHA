@@ -20,12 +20,12 @@ def result_to_array(response):
 
 
 def get_categories():
-    sql_response = db.session.execute("SELECT Category FROM Categories ORDER BY Category").fetchall()
-    return result_to_array(sql_response)
+    categories = db.session.execute("SELECT Category FROM Categories ORDER BY Category").fetchall()
+    return result_to_array(categories)
 
 def get_counties():
-    sql_response = db.session.execute("SELECT County FROM Counties ORDER BY County").fetchall()
-    return result_to_array(sql_response)
+    counties = db.session.execute("SELECT County FROM Counties ORDER BY County").fetchall()
+    return result_to_array(counties)
 
 def get_category_id(category_name):
     sql = "SELECT id FROM Categories WHERE Category=:category_name"

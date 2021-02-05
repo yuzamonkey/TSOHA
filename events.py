@@ -4,11 +4,23 @@ import attributes
 
 
 def get_all():
-    try:
-        all_events = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
-        return all_events
-    except:
-        return []
+    all_events = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
+    return all_events
+
+def get_all_filter_by_category(category_id):
+    sql = "SELECT * FROM Events WHERE category_id=:category_id ORDER BY Starting_time"
+    events = db.session.execute(sql, {"category_id":category_id})
+    return events
+
+def get_all_filter_by_county(county_id):
+    sql = "SELECT * FROM Events WHERE county_id=:county_id ORDER BY Starting_time"
+    events = db.session.execute(sql, {"county_id":county_id})
+    return events
+
+def get_all_filter_by_category_and_county(category_id, county_id):
+    sql = "SELECT * FROM Events WHERE category_id=:category_id and county_id=:county_id ORDER BY Starting_time"
+    events = events = db.session.execute(sql, {"category_id":category_id,"county_id":county_id})
+    return events
 
 def get_event_by_id(id):
     sql = "SELECT * FROM Events WHERE id=:id"

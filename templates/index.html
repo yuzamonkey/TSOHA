@@ -1,4 +1,4 @@
-<h1>Tapahtumakalenteri</h1>
+<h1><a href="/">Tapahtumakalenteri</a></h1>
 
 {% if session.user_id %}
 <p>Olet kirjautunut sisään</p>
@@ -9,6 +9,27 @@
 <a href="/log_in">Kirjaudu sisään</a> <br>
 <a href="/sign_up">Luo käyttäjätunnus</a>
 {% endif %}
+
+<h4>Suodata tuloksia</h4>
+<form action="/" method="GET">
+    <label for="category">Kategoria</label>
+    <input list="categories" name="category">
+    <datalist id="categories">
+        {% for category in categories %}
+        <option>{{category}}
+            {% endfor %}
+    </datalist> <br>
+    
+    <label for="county">Maakunta</label>
+    <input list="counties" name="county">
+    <datalist id="counties">
+        {% for county in counties %}
+        <option>{{county}}
+            {% endfor %}
+    </datalist> <br>
+    </datalist>
+    <input type="submit" value="Suodata">
+</form>
 
 <h3>Tapahtumat:</h3>
 {% for event in events %}
