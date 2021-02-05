@@ -36,7 +36,7 @@ def sign_up():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if (users.add_user(username, password)):
+        if (users.sign_up(username, password)):
             print("SUCCESS")
             return redirect("/")
         else:

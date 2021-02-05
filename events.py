@@ -12,19 +12,20 @@ def get_all():
     return sql_response
 
 def get_event_by_id(id):
-    event = db.session.execute(f"SELECT * FROM Events WHERE id={id}").fetchall()
-    print("RETURN VALUE === ", event)
+    sql = "SELECT * FROM Events WHERE id=:id"
+    event = db.session.execute(sql, {"id":id}).fetchall()
     return event
 
 def get_image_id(event_id):
-    image_id = db.session.execute(f"SELECT image_id FROM Events WHERE id={event_id}").fetchone()[0]
+    sql = "SELECT image_id FROM Events WHERE id=:event_id"
+    image_id = db.session.execute(sql, {"event_id":event_id}).fetchone()[0]
     return image_id
 
 def add_event(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
     starting_time = format_date(starting_time)
     ending_time = format_date(ending_time)
     # add user_id
-    sql = f"""
+    sql = """
         INSERT INTO Events (
             name, 
             category_id, 
@@ -37,17 +38,29 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
             starting_time, 
             ending_time,
             image_id) values (
-                '{name}',
-                {category_id},
-                '{description}',
-                '{price}',
-                {county_id},
-                '{city}',
-                '{locale}',
-                '{address}',
-                '{starting_time}',
-                '{ending_time}',
-                {image_id}
+                :name,
+                :category_id,
+                :description,
+                :price,
+                :county_id,
+                :city,
+                :locale,
+                :address,
+                :starting_time,
+                :ending_time,
+                :image_id
                 )"""
-    db.session.execute(sql)
+    db.session.execute(sql, {
+        "name":name, 
+        "category_id":category_id,
+        "description":description,
+        "price":price,
+        "county_id":county_id,
+        "city":city,
+        "locale":locale,
+        "address":address,
+        "starting_time":starting_time,
+        "ending_time":ending_time,
+        "image_id":image_id
+        })
     db.session.commit()

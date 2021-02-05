@@ -4,8 +4,8 @@ from flask import session
 
 
 def log_in(username, password):
-    user = db.session.execute(
-        f"SELECT password, id FROM Users WHERE username='{username}'").fetchone()
+    sql = "SELECT password, id FROM Users WHERE username=:username"
+    user = db.session.execute(sql, {"username":username}).fetchone()
     if (not user):
         return False
     else:
@@ -21,11 +21,11 @@ def log_out():
     del session["user_id"]
 
 
-def add_user(username, password):
+def sign_up(username, password):
     password = generate_password_hash(password)
     try:
-        db.session.execute(
-            f"INSERT INTO Users (username, password, admin, suspended) VALUES ('{username}','{password}', {False}, {False})")
+        sql = f"INSERT INTO Users (username, password, admin, suspended) VALUES (:username,:password, {False}, {False})"
+        db.session.execute(sql, {"username":username, "password":password})
         db.session.commit()
         return True
     except:

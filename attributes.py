@@ -16,15 +16,18 @@ def get_counties():
     return result_to_array(sql_response)
 
 def get_category_id(category_name):
-    category_id = db.session.execute(f"SELECT id FROM Categories WHERE Category='{category_name}'").fetchone()[0]
+    sql = "SELECT id FROM Categories WHERE Category=:category_name"
+    category_id = db.session.execute(sql, {"category_name":category_name}).fetchone()[0]
     return int(category_id)
 
 def get_county_id(county_name):
-    county_id = db.session.execute(f"SELECT id FROM Counties WHERE County='{county_name}'").fetchone()[0]
+    sql = "SELECT id FROM Counties WHERE County=:county_name"
+    county_id = db.session.execute(sql, {"county_name":county_name}).fetchone()[0]
     return int(county_id)
 
 def get_image_data(id):
-    image_data = db.session.execute(f"SELECT data FROM images WHERE id={id}").fetchone()[0]
+    sql = "SELECT data FROM images WHERE id=:id"
+    image_data = db.session.execute(sql, {"id":id}).fetchone()[0]
     return image_data
 
 def add_image_and_return_id(name, data):
