@@ -192,8 +192,16 @@ def edit_event_without_image(id, name, category_id, description, price, county_i
 
 
 def delete_event(id):
+    #get image_id
+    img_sql = "SELECT image_id FROM Events WHERE id=:id"
+    img_id = db.session.execute(img_sql, {"id":id}).fetchone()[0]
+    #delete event
     sql = "DELETE FROM Events WHERE id=:id"
     db.session.execute(sql, {"id":id})
+    #delete events image
+    if (img_id):
+        delete_img_sql = "DELETE FROM Images WHERE id=:id"
+        db.session.execute(delete_img_sql, {"id":img_id})
     db.session.commit()
 
 def event_count():
