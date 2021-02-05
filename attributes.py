@@ -7,11 +7,8 @@ def format_date(date_result):
     return formatted_date
 
 def timestamp_to_datetime(timestamp):
-    print("TULOSTUS ======= ",str(timestamp))
     date = str(timestamp)[:10]
-    time = str(timestamp)[-5:]
-    print("DATE ==== ", date)
-    print("TIME ==== ", time)
+    time = str(timestamp)[11:16]
     return f"{date}T{time}"
 
 

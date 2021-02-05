@@ -158,6 +158,7 @@ def edit_event(id):
         counties = attributes.get_counties()
         starting_time = attributes.timestamp_to_datetime(event[-4])
         ending_time = attributes.timestamp_to_datetime(event[-3])
+        print(f"STARTING AT {starting_time} ENDING AT {ending_time}")
         return render_template(
             "edit_event.html", 
             event=event, 
@@ -169,4 +170,38 @@ def edit_event(id):
             ending_time=ending_time
             )
     if request.method == "POST":
-        pass
+        event_name = request.form["event_name"]
+        print("EVENT NAME ", event_name)
+        category_id = attributes.get_category_id(request.form["category"])
+        print("CATEGORY_ID ", category_id)
+        description = request.form["description"]
+        print("DESCRIPTION ", description)
+        price = request.form["price"]
+        print("PRICE ", price)
+        county_id = attributes.get_county_id(request.form["county"])
+        print("COUNTY_ID ", county_id)
+        city = request.form["city"]
+        print("CITY ", city)
+        locale = request.form["locale"]
+        print("LOCALE ", locale)
+        address = request.form["address"]
+        print("ADDRESS ", address)
+        starting_time = request.form["starting_time"]
+        print("STARTING TIME ", starting_time)
+        ending_time = request.form["ending_time"]
+        print("ENDING TIME ", ending_time)
+
+        events.edit_event(
+            id,
+            event_name,
+            category_id,
+            description,
+            price,
+            county_id,
+            city,
+            locale,
+            address,
+            starting_time,
+            ending_time,
+        )
+        return redirect("/user_info")

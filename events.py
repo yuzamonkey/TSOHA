@@ -4,8 +4,11 @@ import attributes
 
 
 def get_all():
-    sql_response = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
-    return sql_response
+    try:
+        all_events = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
+        return all_events
+    except:
+        return []
 
 def get_event_by_id(id):
     sql = "SELECT * FROM Events WHERE id=:id"
@@ -66,4 +69,35 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
         "ending_time":ending_time,
         "image_id":image_id
         })
+    db.session.commit()
+
+def edit_event(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
+    starting_time = attributes.format_date(starting_time)
+    ending_time = attributes.format_date(ending_time)
+    sql = """UPDATE Events SET 
+        name=:name, 
+        category_id=:category_id, 
+        description=:description,
+        price=:price, 
+        county_id=:county_id, 
+        city=:city, 
+        locale=:locale, 
+        address=:address, 
+        starting_time=:starting_time, 
+        ending_time=:ending_time       
+        WHERE id=:id"""
+
+    db.session.execute(sql, {
+        "name":name,
+        "category_id":category_id,
+        "description":description,
+        "price":price,
+        "county_id":county_id,
+        "city":city,
+        "locale":locale,
+        "address":address,
+        "starting_time":starting_time,
+        "ending_time":ending_time,
+        "id":id
+    })
     db.session.commit()
