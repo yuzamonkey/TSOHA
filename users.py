@@ -4,7 +4,7 @@ from flask import session
 
 
 def log_in(username, password):
-    sql = "SELECT password, id, admin FROM Users WHERE username=:username"
+    sql = "SELECT password, id, username, admin FROM Users WHERE username=:username"
     user = db.session.execute(sql, {"username":username}).fetchone()
     if (not user):
         return False
@@ -12,7 +12,8 @@ def log_in(username, password):
         hash_value = user[0]
         if check_password_hash(hash_value, password):
             session["user_id"] = user[1]
-            session["is_admin"] = user[2]
+            session["username"] = user[2]
+            session["is_admin"] = user[3]
             return True
         else:
             return False
@@ -63,3 +64,28 @@ def edit_password(new_password, id):
         return True
     except:
         return False
+
+def get_all_users_id_username_suspend():
+    sql = "SELECT id, username, suspended FROM USERS"
+    result = db.session.execute(sql).fetchall()
+    return result
+
+def user_count():
+    sql = "SELECT COUNT(*) FROM USERS"
+    count = db.session.execute(sql).fetchone()[0]
+    return count
+
+def remove_suspension(id):
+    sql = f"UPDATE USERS SET Suspended={False} WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
+def suspend(id):
+    sql = f"UPDATE USERS SET Suspended={True} WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
+def delete(id):
+    sql = "DELETE FROM Users WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()

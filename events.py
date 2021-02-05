@@ -124,3 +124,4 @@ def event_count():
     count = db.session.execute(sql).fetchone()[0]
     return count
 
+

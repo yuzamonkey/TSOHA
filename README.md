@@ -9,7 +9,7 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
   **Sivulla ilman käyttäjätunnusta vieraileva**
   - näkee etusivulla tulevat tapahtumat listanäkymästä
   - ohjataan tapahtuman sivulle, kun vierailija klikkaa tapahtumaa
-  - voi hakea tapahtumia ajankohdan, kategorian, hinnan tai sijainnin perusteella
+  - voi hakea tapahtumia ajankohdan, kategorian tai sijainnin perusteella
   
   **Käyttäjätunnuksella kirjautunut käyttäjä voi**
   - lisätä, muokata ja poistaa omia tapahtumia

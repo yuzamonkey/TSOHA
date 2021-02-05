@@ -232,7 +232,10 @@ def edit_event(id):
 @app.route("/delete_event/<int:id>", methods=["GET", "POST"])
 def delete_event(id):
     events.delete_event(id)
-    return redirect("/user_info")
+    if users.session["is_admin"]:
+        return redirect("/admin_page")
+    else:
+        return redirect("/user_info")
 
 
 #admin
@@ -241,7 +244,29 @@ def admin_page():
     if not users.session["is_admin"]:
         return "No access"
     else:
+        usernames = users.get_all_users_id_username_suspend()
+        all_events = events.get_all()
         reports = attributes.get_reports()
+        user_count = users.user_count()
         event_count = events.event_count()
-        return render_template("admin_page.html", reports=reports, event_count=event_count)
+        return render_template("admin_page.html", usernames=usernames, events=all_events, reports=reports, user_count=user_count, event_count=event_count)
 
+@app.route("/delete_report/<int:id>")
+def delete_report(id):
+    attributes.delete_report(id)
+    return redirect("/admin_page")
+
+@app.route("/suspend_user/<int:id>")
+def suspend_user(id):
+    users.suspend(id)
+    return redirect("/admin_page")
+
+@app.route("/remove_suspension/<int:id>")
+def remove_suspension(id):
+    users.remove_suspension(id)
+    return redirect("/admin_page")
+
+@app.route("/delete_user/<int:id>")
+def delete_user(id):
+    users.delete(id)
+    return redirect("/admin_page")

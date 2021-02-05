@@ -67,3 +67,8 @@ def get_reports():
     sql = "SELECT * FROM Reports"
     reports = db.session.execute(sql).fetchall()
     return reports
+
+def delete_report(id):
+    sql = "DELETE FROM Reports WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()

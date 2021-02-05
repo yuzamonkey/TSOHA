@@ -1,10 +1,27 @@
-<h4>Jäädytä käyttäjä</h4>
-<h4>Poista käyttäjä</h4>
-<h4>Poista tapahtuma</h4>
 <h3>Raportit</h3>
-    {% for report in reports %}
-        <p>{{report}}</p>
-    {% endfor %}
+{% for report in reports %}
+<p>{{report}} <a href="/delete_report/{{report[0]}}">Poista</a></p>
+{% endfor %}
 
 <h3>Tilastot</h3>
+<p>Käyttäjiä: {{user_count}}</p>
 <p>Tapahtumia tietokannassa: {{event_count}}</p>
+
+
+
+<h4>Poista tapahtuma</h4>
+{% for event in events %}
+<p>{{event[0], event[1]}}<a href="/event/{{event[0]}}">Näytä</a> <a href="/delete_event/{{event[0]}}">Poista</a> </p>
+{% endfor %}
+
+
+<h4>Jäädytä tai poista käyttäjä</h4>
+{% for name in usernames %}
+<p>{{name}} 
+    {% if name[2] %}
+    <a href="/remove_suspension/{{name[0]}}">Poista jäädytys</a> 
+    {% else %}
+    <a href="/suspend_user/{{name[0]}}">Jäädytä</a> 
+    {% endif %}
+    <a href="/delete_user/{{name[0]}}">Poista</a> </p>
+{% endfor %}
