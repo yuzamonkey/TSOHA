@@ -13,9 +13,9 @@ def index():
         county = request.args["county"]
         if (category and not county):
             selected_events = events.get_all_filter_by_category(attributes.get_category_id(category))
-        if (county and not category):
+        elif (county and not category):
             selected_events = events.get_all_filter_by_county(attributes.get_county_id(county))
-        if (county and category):
+        elif (county and category):
             selected_events = events.get_all_filter_by_category_and_county(attributes.get_category_id(category), attributes.get_county_id(county)) 
         else: 
             selected_events = events.get_all()
