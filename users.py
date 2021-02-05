@@ -4,7 +4,7 @@ from flask import session
 
 
 def log_in(username, password):
-    sql = "SELECT password, id FROM Users WHERE username=:username"
+    sql = "SELECT password, id, admin FROM Users WHERE username=:username"
     user = db.session.execute(sql, {"username":username}).fetchone()
     if (not user):
         return False
@@ -12,12 +12,14 @@ def log_in(username, password):
         hash_value = user[0]
         if check_password_hash(hash_value, password):
             session["user_id"] = user[1]
+            session["is_admin"] = user[2]
             return True
         else:
             return False
 
 def log_out():
     del session["user_id"]
+    del session["is_admin"]
 
 def sign_up(username, password):
     password = generate_password_hash(password)

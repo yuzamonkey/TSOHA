@@ -33,3 +33,9 @@ CREATE TABLE Events (
     Price TEXT,
     Image_id INTEGER REFERENCES Images
 );
+CREATE TABLE Reports (
+    id SERIAL PRIMARY KEY, 
+    Title TEXT, 
+    Content TEXT, 
+    Unread BOOLEAN
+);

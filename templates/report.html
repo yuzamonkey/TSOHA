@@ -1,0 +1,13 @@
+<h3>Raportoi ylläpidolle ongelmasta</h3>
+
+{% if message  %}
+<p>{{message}}</p>
+{%  endif %}
+
+<form action="/report" method="POST">
+    Otsikko <br><input type="text" name="title"> <br>
+    <label for="content">Kuvaile ongelmaa: <br></label>
+    <textarea name="content" rows="4" cols="50"></textarea><br>
+    <input type="submit" value="Lähetä">    
+</form>
+<a href="/">Etusivulle</a>

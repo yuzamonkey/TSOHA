@@ -21,6 +21,7 @@ def index():
             selected_events = events.get_all()
     else:
         selected_events = events.get_all()
+
     categories = attributes.get_categories()
     counties = attributes.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
@@ -44,7 +45,6 @@ def user_info():
     username = users.get_username(user_id)
     users_events = events.get_events_by_user_id(user_id)
     return render_template("user_info.html", username=username, users_events=users_events)
-
 
 @app.route("/edit_username", methods=["GET", "POST"])
 def edit_username():
@@ -94,6 +94,16 @@ def sign_up():
         else:
             print("FAIL")
             return render_template("sign_up.html", error=True)
+
+@app.route("/report", methods=["GET", "POST"])
+def report():
+    if request.method == "GET":
+        return render_template("report.html")
+    if request.method == "POST":
+        title = request.form["title"]
+        content = request.form["content"]
+        attributes.send_report(title, content)
+        return render_template("report.html", message="Kiitos viestistäsi")
 
 # events
 @app.route("/event/<int:id>")
@@ -218,3 +228,13 @@ def edit_event(id):
             ending_time,
         )
         return redirect("/user_info")
+
+@app.route("/admin_page")
+def admin_page():
+    if not users.session["is_admin"]:
+        return "No access"
+    else:
+        reports = attributes.get_reports()
+        event_count = events.event_count()
+        return render_template("admin_page.html", reports=reports, event_count=event_count)
+

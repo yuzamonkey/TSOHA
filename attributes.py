@@ -57,3 +57,13 @@ def add_image_and_return_id(name, data):
     id = db.session.execute(sql, {"name":name,"data":data}).fetchone()[0]
     db.session.commit()
     return id
+
+def send_report(title, content):
+    sql = f"INSERT INTO Reports (title, content, unread)VALUES (:title, :content, {True})"
+    db.session.execute(sql, {"title":title, "content":content})
+    db.session.commit()
+
+def get_reports():
+    sql = "SELECT * FROM Reports"
+    reports = db.session.execute(sql).fetchall()
+    return reports

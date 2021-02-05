@@ -3,6 +3,10 @@
 <p>Käyttäjätunnus: {{username}} <a href="/edit_username">Vaihda</a></p>
 <p>Salasana: ***** <a href="/edit_password">Vaihda</a></p>
 
+{% if session.is_admin %}
+<a href="/admin_page">admin työkalut</a>
+{% endif %}
+
 <h3>Tapahtumasi</h3>
 {% for event in users_events %}
     <p>{{event}} <a href="/edit_event/{{event[0]}}">Muokkaa</a></p> 
