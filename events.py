@@ -114,6 +114,11 @@ def edit_event(id, name, category_id, description, price, county_id, city, local
     })
     db.session.commit()
 
+def delete_event(id):
+    sql = "DELETE FROM Events WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
 def event_count():
     sql = "SELECT COUNT(*) FROM Events"
     count = db.session.execute(sql).fetchone()[0]

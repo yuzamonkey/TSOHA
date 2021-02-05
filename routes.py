@@ -229,6 +229,13 @@ def edit_event(id):
         )
         return redirect("/user_info")
 
+@app.route("/delete_event/<int:id>", methods=["GET", "POST"])
+def delete_event(id):
+    events.delete_event(id)
+    return redirect("/user_info")
+
+
+#admin
 @app.route("/admin_page")
 def admin_page():
     if not users.session["is_admin"]:

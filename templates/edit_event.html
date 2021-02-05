@@ -1,6 +1,16 @@
 <h2>Muokkaa tapahtumaa <i>{{event[1]}}</i></h2>
 
-<p>{{event}}</p>
+<button onclick="confirm_window()">Poista tapahtuma</button>
+
+<script>
+    function confirm_window() {
+        var del = confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
+        if (del) {
+            window.alert("Tapahtuma poistettu");
+            window.location.href = "/delete_event/{{event[0]}}";
+        }
+    }
+</script>
 
 <form action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data">
     <p>* = pakollinen</p>
@@ -10,12 +20,12 @@
     <label for="category">Kategoria *<br></label>
     <select name="category">
         {% for category in categories %}
-            {% if category == event_category %}
-            <option selected>{{category}}
+        {% if category == event_category %}
+        <option selected>{{category}}
             {% else %}
-            <option>{{category}}
+        <option>{{category}}
             {% endif %}
-        {% endfor %}
+            {% endfor %}
     </select> <br>
 
     <label for="description">Kuvaus *<br></label>
@@ -24,12 +34,12 @@
     <label for="county">Maakunta *<br></label>
     <select name="county">
         {% for county in counties %}
-            {% if county == event_county %}
-            <option selected>{{county}}
+        {% if county == event_county %}
+        <option selected>{{county}}
             {% else %}
-            <option>{{county}}
+        <option>{{county}}
             {% endif %}
-    {% endfor %}
+            {% endfor %}
     </select> <br>
     Kaupunki *<br><input type="text" name="city" value="{{event[6]}}"> <br>
     Paikka *<br><input type="text" name="locale" value="{{event[5]}}"> <br>
