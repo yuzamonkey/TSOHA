@@ -14,10 +14,11 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
   **Käyttäjätunnuksella kirjautunut käyttäjä voi**
   - lisätä, muokata ja poistaa omia tapahtumia
     - tapahtuma luodaan täyttämällä kaavake. Kaavakkeeseen tulee täyttää tapahtuman nimi, kuvaus, kategoria, ajankohta, sijainti ja hinta. Tapahtumaan voi lisätä kuvan.
-  - raportoida ylläpitoon sovelluksen väärinkäytöstä tai spämmäämisestä
+  - raportoida ylläpitoon ongelmista
   
   **Ylläpitäjä voi**
   - lisätä tai poistaa minkä tahansa tapahtuman
+  - lukea käyttäjien lähettämiä raportteja
   - tutkia tilastoja
   - jäädyttää ja poistaa tilejä
 
@@ -43,6 +44,7 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
 * Categories
 * Counties
 * Images
+* Reports
 
 ## Linkit
 https://tapahtumakalenteri.herokuapp.com/
