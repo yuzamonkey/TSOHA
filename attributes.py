@@ -64,9 +64,14 @@ def send_report(title, content):
     db.session.commit()
 
 def get_reports():
-    sql = "SELECT * FROM Reports"
+    sql = "SELECT * FROM Reports ORDER BY id DESC"
     reports = db.session.execute(sql).fetchall()
     return reports
+
+def mark_as_read_report(id):
+    sql = f"UPDATE Reports SET Unread={False} WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
 
 def delete_report(id):
     sql = "DELETE FROM Reports WHERE id=:id"

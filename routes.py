@@ -255,6 +255,11 @@ def admin_page():
         event_count = events.event_count()
         return render_template("admin_page.html", usernames=usernames, events=all_events, reports=reports, user_count=user_count, event_count=event_count)
 
+@app.route("/mark_as_read_report/<int:id>")
+def mark_as_read_report(id):
+    attributes.mark_as_read_report(id)
+    return redirect("/admin_page")
+
 @app.route("/delete_report/<int:id>")
 def delete_report(id):
     attributes.delete_report(id)

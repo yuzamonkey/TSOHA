@@ -1,6 +1,10 @@
 <h3>Raportit</h3>
 {% for report in reports %}
-<p>{{report}} <a href="/delete_report/{{report[0]}}">Poista</a></p>
+    {% if report[3] %}
+        <p><b>{{report}}</b> <a href="/mark_as_read_report/{{report[0]}}">Merkitse luetuksi</a>
+    {% else %}
+        <p>{{report}} <a href="/delete_report/{{report[0]}}">Poista</a></p>
+    {% endif %}
 {% endfor %}
 
 <h3>Tilastot</h3>
