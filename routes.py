@@ -102,7 +102,7 @@ def report():
     if request.method == "POST":
         title = request.form["title"]
         content = request.form["content"]
-        attributes.send_report(title, content)
+        attributes.add_report(title, content)
         return render_template("report.html", message="Kiitos viestistäsi")
 
 # events
@@ -251,8 +251,8 @@ def admin_page():
         usernames = users.get_all_users_id_username_suspend()
         all_events = events.get_all()
         reports = attributes.get_reports()
-        user_count = users.user_count()
-        event_count = events.event_count()
+        user_count = users.get_user_count()
+        event_count = events.get_event_count()
         return render_template("admin_page.html", usernames=usernames, events=all_events, reports=reports, user_count=user_count, event_count=event_count)
 
 @app.route("/mark_as_read_report/<int:id>")

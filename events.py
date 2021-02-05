@@ -190,7 +190,6 @@ def edit_event_without_image(id, name, category_id, description, price, county_i
     })
     db.session.commit()
 
-
 def delete_event(id):
     #get image_id
     img_sql = "SELECT image_id FROM Events WHERE id=:id"
@@ -204,7 +203,7 @@ def delete_event(id):
         db.session.execute(delete_img_sql, {"id":img_id})
     db.session.commit()
 
-def event_count():
+def get_event_count():
     sql = "SELECT COUNT(*) FROM Events"
     count = db.session.execute(sql).fetchone()[0]
     return count

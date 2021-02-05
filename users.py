@@ -71,7 +71,7 @@ def get_all_users_id_username_suspend():
     result = db.session.execute(sql).fetchall()
     return result
 
-def user_count():
+def get_user_count():
     sql = "SELECT COUNT(*) FROM USERS"
     count = db.session.execute(sql).fetchone()[0]
     return count

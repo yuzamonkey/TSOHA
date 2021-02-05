@@ -11,13 +11,11 @@ def timestamp_to_datetime(timestamp):
     time = str(timestamp)[11:16]
     return f"{date}T{time}"
 
-
 def result_to_array(response):
     array = []
     for item in response:
         array.append(str(item)[2:-3])
     return array
-
 
 def get_categories():
     categories = db.session.execute("SELECT Category FROM Categories ORDER BY Category").fetchall()
@@ -58,7 +56,7 @@ def add_image_and_return_id(name, data):
     db.session.commit()
     return id
 
-def send_report(title, content):
+def add_report(title, content):
     sql = f"INSERT INTO Reports (title, content, unread)VALUES (:title, :content, {True})"
     db.session.execute(sql, {"title":title, "content":content})
     db.session.commit()

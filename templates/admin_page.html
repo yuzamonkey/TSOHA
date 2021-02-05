@@ -13,7 +13,7 @@
 
 
 
-<h4>Tapahtumat</h4>
+<h3>Tapahtumat</h3>
 {% for event in events %}
 <p>{{event[0], event[1], event[9]}}
     <a href="/event/{{event[0]}}">Näytä</a> 
@@ -22,7 +22,7 @@
 {% endfor %}
 
 
-<h4>Jäädytä tai poista käyttäjä</h4>
+<h3>Jäädytä tai poista käyttäjä</h3>
 {% for name in usernames %}
 <p>{{name}} 
     {% if name[2] %}
