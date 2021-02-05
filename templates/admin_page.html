@@ -11,7 +11,7 @@
 
 <h4>Poista tapahtuma</h4>
 {% for event in events %}
-<p>{{event[0], event[1]}}<a href="/event/{{event[0]}}">Näytä</a> <a href="/delete_event/{{event[0]}}">Poista</a> </p>
+<p>{{event[0], event[1], event[9]}}<a href="/event/{{event[0]}}">Näytä</a> <a href="/delete_event/{{event[0]}}">Poista</a> </p>
 {% endfor %}
 
 
@@ -19,9 +19,11 @@
 {% for name in usernames %}
 <p>{{name}} 
     {% if name[2] %}
-    <a href="/remove_suspension/{{name[0]}}">Poista jäädytys</a> 
+    <a href="/remove_suspension/{{name[0]}}">Palauta</a> 
     {% else %}
     <a href="/suspend_user/{{name[0]}}">Jäädytä</a> 
     {% endif %}
     <a href="/delete_user/{{name[0]}}">Poista</a> </p>
 {% endfor %}
+
+<a href="/user_info">Takaisin</a>

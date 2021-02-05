@@ -66,7 +66,7 @@ def edit_password(new_password, id):
         return False
 
 def get_all_users_id_username_suspend():
-    sql = "SELECT id, username, suspended FROM USERS"
+    sql = "SELECT id, username, suspended FROM Users ORDER BY username"
     result = db.session.execute(sql).fetchall()
     return result
 
