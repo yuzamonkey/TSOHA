@@ -126,49 +126,50 @@ def create_event():
         counties = attributes.get_counties()
         return render_template("create_event.html", categories=categories, counties=counties)
 
-    # insert to db
     if request.method == "POST":
         event_name = request.form["event_name"]
-        print("EVENT NAME ", event_name)
         category_id = attributes.get_category_id(request.form["category"])
-        print("CATEGORY_ID ", category_id)
         description = request.form["description"]
-        print("DESCRIPTION ", description)
         price = request.form["price"]
-        print("PRICE ", price)
         county_id = attributes.get_county_id(request.form["county"])
-        print("COUNTY_ID ", county_id)
         city = request.form["city"]
-        print("CITY ", city)
         locale = request.form["locale"]
-        print("LOCALE ", locale)
         address = request.form["address"]
-        print("ADDRESS ", address)
         starting_time = request.form["starting_time"]
-        print("STARTING TIME ", starting_time)
         ending_time = request.form["ending_time"]
-        print("ENDING TIME ", ending_time)
         # handle image
         image = request.files["image"]
-        image_name = image.filename
-        data = image.read()
+        if (image):
+            image_name = image.filename
+            data = image.read()
+            image_id = attributes.add_image_and_return_id(image_name, data)
 
-        image_id = attributes.add_image_and_return_id(image_name, data)
-
-        events.add_event(
-            event_name,
-            category_id,
-            description,
-            price,
-            county_id,
-            city,
-            locale,
-            address,
-            starting_time,
-            ending_time,
-            image_id
-        )
-
+            events.add_event_with_image(
+                event_name,
+                category_id,
+                description,
+                price,
+                county_id,
+                city,
+                locale,
+                address,
+                starting_time,
+                ending_time,
+                image_id
+            )
+        else:
+            events.add_event_without_image(
+                event_name,
+                category_id,
+                description,
+                price,
+                county_id,
+                city,
+                locale,
+                address,
+                starting_time,
+                ending_time
+            )
         return redirect("/")
 
 @app.route("/edit_event/<int:id>", methods=["GET", "POST"])
@@ -181,7 +182,8 @@ def edit_event(id):
         counties = attributes.get_counties()
         starting_time = attributes.timestamp_to_datetime(event[-4])
         ending_time = attributes.timestamp_to_datetime(event[-3])
-        print(f"STARTING AT {starting_time} ENDING AT {ending_time}")
+
+
         return render_template(
             "edit_event.html", 
             event=event, 
@@ -194,39 +196,38 @@ def edit_event(id):
             )
     if request.method == "POST":
         event_name = request.form["event_name"]
-        print("EVENT NAME ", event_name)
         category_id = attributes.get_category_id(request.form["category"])
-        print("CATEGORY_ID ", category_id)
         description = request.form["description"]
-        print("DESCRIPTION ", description)
         price = request.form["price"]
-        print("PRICE ", price)
         county_id = attributes.get_county_id(request.form["county"])
-        print("COUNTY_ID ", county_id)
         city = request.form["city"]
-        print("CITY ", city)
         locale = request.form["locale"]
-        print("LOCALE ", locale)
         address = request.form["address"]
-        print("ADDRESS ", address)
         starting_time = request.form["starting_time"]
-        print("STARTING TIME ", starting_time)
         ending_time = request.form["ending_time"]
-        print("ENDING TIME ", ending_time)
 
-        events.edit_event(
-            id,
-            event_name,
-            category_id,
-            description,
-            price,
-            county_id,
-            city,
-            locale,
-            address,
-            starting_time,
-            ending_time,
-        )
+         # handle image
+        image = request.files["image"]
+        if (image):
+            image_name = image.filename
+            data = image.read()
+            image_id = attributes.add_image_and_return_id(image_name, data)
+        
+            events.edit_event_with_image(
+                id,
+                event_name,
+                category_id,
+                description,
+                price,
+                county_id,
+                city,
+                locale,
+                address,
+                starting_time,
+                ending_time,
+                image_id
+            )
+        
         return redirect("/user_info")
 
 @app.route("/delete_event/<int:id>", methods=["GET", "POST"])
@@ -236,7 +237,6 @@ def delete_event(id):
         return redirect("/admin_page")
     else:
         return redirect("/user_info")
-
 
 #admin
 @app.route("/admin_page")

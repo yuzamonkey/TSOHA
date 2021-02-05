@@ -6,7 +6,6 @@
     function confirm_window() {
         var del = confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
         if (del) {
-            window.alert("Tapahtuma poistettu");
             window.location.href = "/delete_event/{{event[0]}}";
         }
     }
@@ -47,7 +46,7 @@
     Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}"> <br>
     Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}"> <br>
 
-    <!-- Kuvatiedosto <br><input type="file" name="image"> -->
+    Kuvatiedosto <br><input type="file" name="image">
     <br><br>
     <input type="submit" value="Lähetä">
 </form>

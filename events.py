@@ -37,7 +37,7 @@ def get_image_id(event_id):
     image_id = db.session.execute(sql, {"event_id":event_id}).fetchone()[0]
     return image_id
 
-def add_event(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
+def add_event_with_image(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
     starting_time = attributes.format_date(starting_time)
     ending_time = attributes.format_date(ending_time)
     sql = """
@@ -83,7 +83,50 @@ def add_event(name, category_id, description, price, county_id, city, locale, ad
         })
     db.session.commit()
 
-def edit_event(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
+def add_event_without_image(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
+    starting_time = attributes.format_date(starting_time)
+    ending_time = attributes.format_date(ending_time)
+    sql = """
+        INSERT INTO Events (
+            name, 
+            user_id,
+            category_id, 
+            description, 
+            price, 
+            county_id, 
+            city, 
+            locale, 
+            address, 
+            starting_time, 
+            ending_time) values (
+                :name,
+                :user_id,
+                :category_id,
+                :description,
+                :price,
+                :county_id,
+                :city,
+                :locale,
+                :address,
+                :starting_time,
+                :ending_time
+                )"""
+    db.session.execute(sql, {
+        "name":name, 
+        "user_id":users.session["user_id"],
+        "category_id":category_id,
+        "description":description,
+        "price":price,
+        "county_id":county_id,
+        "city":city,
+        "locale":locale,
+        "address":address,
+        "starting_time":starting_time,
+        "ending_time":ending_time
+        })
+    db.session.commit()
+
+def edit_event_with_image(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
     starting_time = attributes.format_date(starting_time)
     ending_time = attributes.format_date(ending_time)
     sql = """UPDATE Events SET 
@@ -96,7 +139,40 @@ def edit_event(id, name, category_id, description, price, county_id, city, local
         locale=:locale, 
         address=:address, 
         starting_time=:starting_time, 
-        ending_time=:ending_time       
+        ending_time=:ending_time,
+        image_id=:image_id       
+        WHERE id=:id"""
+
+    db.session.execute(sql, {
+        "name":name,
+        "category_id":category_id,
+        "description":description,
+        "price":price,
+        "county_id":county_id,
+        "city":city,
+        "locale":locale,
+        "address":address,
+        "starting_time":starting_time,
+        "ending_time":ending_time,
+        "image_id":image_id,
+        "id":id
+    })
+    db.session.commit()
+
+def edit_event_without_image(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
+    starting_time = attributes.format_date(starting_time)
+    ending_time = attributes.format_date(ending_time)
+    sql = """UPDATE Events SET 
+        name=:name, 
+        category_id=:category_id, 
+        description=:description,
+        price=:price, 
+        county_id=:county_id, 
+        city=:city, 
+        locale=:locale, 
+        address=:address, 
+        starting_time=:starting_time, 
+        ending_time=:ending_time    
         WHERE id=:id"""
 
     db.session.execute(sql, {
@@ -113,6 +189,7 @@ def edit_event(id, name, category_id, description, price, county_id, city, local
         "id":id
     })
     db.session.commit()
+
 
 def delete_event(id):
     sql = "DELETE FROM Events WHERE id=:id"
