@@ -1,8 +1,19 @@
 # Tapahtumakalenteri
 
-https://tapahtumakalenteri.herokuapp.com/
+https://tapahtumakalenteri.herokuapp.com/ (päivitetty 5.2.2020)
 
 Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtumia voivat olla mm. konsertit, näyttelyt ja teatteriesitykset.
+
+### Sovelluksen nykyinen tilanne 
+
+Sovelluksen perustoiminnallisuudet on tehty. Muutamia ominaisuuksia ei vielä ole, mutta ne tulevat myöhemmin:
+ - Tapahtumien suodattaminen päivämäärän perusteella
+ - Tapahtuman tietojen tarkistaminen ennen sen julkaisua. Pakolliset kentät tulisi olla täytetty ja tapahtuman alkamisajankohta tulla ennen loppumisajankohtaa.
+ - CSFR-haavoittuvuuden estäminen
+
+ ### Testaus Herokussa
+    
+Ylläpitäjän tunnus on ja salasana on admin. Peruskäyttäjän toimintojen tutkimista varten voi luoda uuden käyttäjätilin.
 
 ## Kuvaus
   
@@ -17,16 +28,17 @@ Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtu
   - raportoida ylläpitoon ongelmista
   
   **Ylläpitäjä voi**
-  - lisätä tai poistaa minkä tahansa tapahtuman
+  - lisätä, muokata tai poistaa minkä tahansa tapahtuman
   - lukea käyttäjien lähettämiä raportteja
   - tutkia tilastoja
   - jäädyttää ja poistaa tilejä
 
 ## Ominaisuudet
   - Ylläpitäjän ja käyttäjän oikeudet
+  - Tilien jäädytys ja toiminnallisuuksien rajoittaminen
   - Käyttäjätunnuksen luominen
   - Tapahtumien lisäys, poistaminen ja muokkaaminen
-  - Väärinkäytön raportointi ylläpitäjälle
+  - Raportointi ylläpitäjälle
   - Tilastointi
   - Tapahtumien haku hakukriteereillä
 

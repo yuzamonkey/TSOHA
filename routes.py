@@ -21,7 +21,6 @@ def index():
             selected_events = events.get_all()
     else:
         selected_events = events.get_all()
-
     categories = attributes.get_categories()
     counties = attributes.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
@@ -89,8 +88,7 @@ def sign_up():
         username = request.form["username"]
         password = request.form["password"]
         if (users.sign_up(username, password)):
-            print("SUCCESS")
-            return redirect("/")
+            return render_template("log_in.html", success=True, message="Käyttäjätunnus luotu, kirjaudu sisään")
         else:
             print("FAIL")
             return render_template("sign_up.html", error=True)
