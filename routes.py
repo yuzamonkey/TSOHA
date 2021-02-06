@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, session, make_response 
+from flask import render_template, request, redirect, session, make_response, abort 
 import attributes
 import events
 import users
@@ -52,8 +52,9 @@ def edit_username():
     if request.method == "GET":
         return render_template("edit_username.html", username=username, error=False)
     if request.method == "POST":
+        if (session["csrf_token"] != request.form["csrf_token"]):
+            return abort(403)
         new_username = request.form["new_username"]
-        print("NEW USERNAME == ", new_username)
         if (users.edit_username(new_username, user_id)):
             return redirect("/user_info")
         else:
@@ -65,6 +66,8 @@ def edit_password():
     if request.method == "GET":
         return render_template("edit_password.html")
     if request.method == "POST":
+        if (session["csrf_token"] != request.form["csrf_token"]):
+            return abort(403)
         current_password = request.form["current_password"]
         new_password = request.form["new_password"]
         if (users.verify_current_password(current_password, user_id)):
@@ -127,6 +130,8 @@ def create_event():
         return render_template("create_event.html", categories=categories, counties=counties)
 
     if request.method == "POST":
+        if (session["csrf_token"] != request.form["csrf_token"]):
+            return abort(403)
         event_name = request.form["event_name"]
         category_id = attributes.get_category_id(request.form["category"])
         description = request.form["description"]
@@ -197,6 +202,8 @@ def edit_event(id):
             ending_time=ending_time
             )
     if request.method == "POST":
+        if (session["csrf_token"] != request.form["csrf_token"]):
+            return abort(403)
         event_name = request.form["event_name"]
         category_id = attributes.get_category_id(request.form["category"])
         description = request.form["description"]

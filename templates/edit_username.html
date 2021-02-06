@@ -6,4 +6,10 @@
     <p>Nykyinen käyttäjätunnus: {{username}}</p>
     Uusi käyttäjätunnus: <input type="text" name="new_username"> <br>
     <input type="submit" value="Muuta">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
+
+
+
+<!-- if (session["csrf_token"] != request.form["csrf_token"]):
+            return abort(403) -->
