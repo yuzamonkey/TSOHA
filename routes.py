@@ -12,16 +12,14 @@ def index():
         category = request.args["category"]
         county = request.args["county"]
         if (category and not county):
-            selected_events = events.get_all_filter_by_category(utils.get_category_id(category))
+            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category(utils.get_category_id(category)))
         elif (county and not category):
-            selected_events = events.get_all_filter_by_county(utils.get_county_id(county))
+            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_county(utils.get_county_id(county)))
         elif (county and category):
-            selected_events = events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)) 
+            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)))
         else: 
-            #selected_events = events.get_all()
             selected_events = utils.events_to_dictionaries(events.get_all())
     else:
-        #selected_events = events.get_all()
         selected_events = utils.events_to_dictionaries(events.get_all())
     categories = utils.get_categories()
     counties = utils.get_counties()
