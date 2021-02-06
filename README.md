@@ -14,7 +14,7 @@ Muutamia ominaisuuksia ei vielä ole, mutta ne tulevat myöhemmin:
  
  ### Testaus Herokussa
     
-Ylläpitäjän tunnus ja salasana on admin. Peruskäyttäjän toimintojen tutkimista varten voi luoda uuden käyttäjätilin. Jos jostain syystä uuden käyttäjän luominen ei onnistu, sovellukseen voi kirjautua kombolla username-password.
+Ylläpitäjän tunnus ja salasana on admin. Ylläpitäjän työkalut löytyvät Omat tiedot -> admin työkalut. Peruskäyttäjän toimintojen tutkimista varten voi luoda uuden käyttäjätilin. Jos jostain syystä uuden käyttäjän luominen ei onnistu, sovellukseen voi kirjautua kombolla username-password.
 
 ## Kuvaus
   
