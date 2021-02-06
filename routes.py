@@ -228,6 +228,20 @@ def edit_event(id):
                 starting_time,
                 ending_time,
                 image_id
+            ) 
+        else:
+            events.edit_event_without_image(
+                id,
+                event_name,
+                category_id,
+                description,
+                price,
+                county_id,
+                city,
+                locale,
+                address,
+                starting_time,
+                ending_time
             )
         
         return redirect("/user_info")
