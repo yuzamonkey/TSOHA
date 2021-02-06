@@ -43,9 +43,9 @@
 
 <h3>Tapahtumat:</h3>
 {% for event in events %}
-<p>{{event}} <a href="/event/{{event[0]}}">tapahtumasivulle</a></p>
-</p>
+    <div>
+    <p>{{event["name"]}}, {{event["category"]}}, {{event["city"]}}, {{event["county"]}}, {{event["starting_time"]}}, {{event["price"]}}
+        <a href="/event/{{event.id}}">Tapahtumasivulle</a></p>
+    </div>
 {% endfor %}
 
-
-<br><br>

@@ -1,7 +1,18 @@
 <div>
-    <img src="/event_image/{{image_id}}" alt="Event_Image" width="auto" height="auto">
+    <img src="/event_image/{{image_id}}" alt="Event_image" width="auto" height="auto">
 </div>
 
-{% for item in event %}
-<p>{{item}}</p>
-{% endfor %}
+<div>
+    <p>Tapahtuman järjestäjä: {{event["creator"]}}</p>
+    <p>Paikka: {{event["locale"]}}</p>
+    <p>Osoite: {{event["address"]}}, {{event["city"]}}</p>
+    <p>Alkaa: {{event["starting_time"]}}</p>
+    <p>Loppuu: {{event["ending_time"]}}</p>
+    <p>Hinta: {{event["price"]}}</p>
+</div>
+<div>
+    <h3>{{event["name"]}}</h3>
+    {{event["description"]}}
+</div>
+<br>
+<a href="/">Etusivulle</a>

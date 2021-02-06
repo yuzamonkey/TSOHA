@@ -1,6 +1,7 @@
 from db import db
+import users
 
-def format_date(date_result):
+def datetime_to_timestamp(date_result):
     date = date_result[:10]
     time = date_result[-5:]
     formatted_date = date + " " + time
@@ -10,6 +11,39 @@ def timestamp_to_datetime(timestamp):
     date = str(timestamp)[:10]
     time = str(timestamp)[11:16]
     return f"{date}T{time}"
+
+def timestamp_to_dmyhm(timestamp):
+    year = str(timestamp)[:4] 
+    month = str(timestamp)[5:7]
+    day = str(timestamp)[8:10]
+    hours = str(timestamp)[11:13]
+    minutes = str(timestamp)[14:16]
+    ddmmyyyyhhmm = f"{day}.{month}.{year} {hours}:{minutes}"
+    return ddmmyyyyhhmm
+
+def event_to_dictionary(event):
+    dictionary = {
+            "id": event[0],
+            "name": event[1],
+            "creator": users.get_username(event[2]),
+            "category": get_category_name(event[3]),
+            "county": get_county_name(event[4]),
+            "locale": event[5],
+            "city": event[6],
+            "address": event[7],
+            "description": event[8],
+            "starting_time": timestamp_to_dmyhm(event[9]),
+            "ending_time": timestamp_to_dmyhm(event[10]),
+            "price": event[11],
+            "image_id": event[12]
+        }
+    return dictionary
+
+def events_to_dictionaries(events):
+    all_events = []
+    for event in events:
+        all_events.append(event_to_dictionary(event))
+    return all_events
 
 def result_to_array(response):
     array = []

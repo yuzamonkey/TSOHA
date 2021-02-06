@@ -18,9 +18,11 @@ def index():
         elif (county and category):
             selected_events = events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)) 
         else: 
-            selected_events = events.get_all()
+            #selected_events = events.get_all()
+            selected_events = utils.events_to_dictionaries(events.get_all())
     else:
-        selected_events = events.get_all()
+        #selected_events = events.get_all()
+        selected_events = utils.events_to_dictionaries(events.get_all())
     categories = utils.get_categories()
     counties = utils.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
@@ -109,8 +111,8 @@ def report():
 # events
 @app.route("/event/<int:id>")
 def event(id):
-    event = events.get_event_by_id(id)
-    image_id = events.get_image_id(id)
+    event = utils.event_to_dictionary(events.get_event_by_id(id))
+    image_id = event["image_id"]
     return render_template("event.html", event=event, image_id=image_id)
 
 @app.route("/event_image/<int:id>")

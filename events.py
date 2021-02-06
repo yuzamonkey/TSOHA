@@ -38,8 +38,8 @@ def get_image_id(event_id):
     return image_id
 
 def add_event_with_image(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
-    starting_time = utils.format_date(starting_time)
-    ending_time = utils.format_date(ending_time)
+    starting_time = utils.datetime_to_timestamp(starting_time)
+    ending_time = utils.datetime_to_timestamp(ending_time)
     sql = """
         INSERT INTO Events (
             name, 
@@ -84,8 +84,8 @@ def add_event_with_image(name, category_id, description, price, county_id, city,
     db.session.commit()
 
 def add_event_without_image(name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
-    starting_time = utils.format_date(starting_time)
-    ending_time = utils.format_date(ending_time)
+    starting_time = utils.datetime_to_timestamp(starting_time)
+    ending_time = utils.datetime_to_timestamp(ending_time)
     sql = """
         INSERT INTO Events (
             name, 
@@ -127,8 +127,8 @@ def add_event_without_image(name, category_id, description, price, county_id, ci
     db.session.commit()
 
 def edit_event_with_image(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time, image_id):
-    starting_time = utils.format_date(starting_time)
-    ending_time = utils.format_date(ending_time)
+    starting_time = utils.datetime_to_timestamp(starting_time)
+    ending_time = utils.datetime_to_timestamp(ending_time)
     sql = """UPDATE Events SET 
         name=:name, 
         category_id=:category_id, 
@@ -160,8 +160,8 @@ def edit_event_with_image(id, name, category_id, description, price, county_id, 
     db.session.commit()
 
 def edit_event_without_image(id, name, category_id, description, price, county_id, city, locale, address, starting_time, ending_time):
-    starting_time = utils.format_date(starting_time)
-    ending_time = utils.format_date(ending_time)
+    starting_time = utils.datetime_to_timestamp(starting_time)
+    ending_time = utils.datetime_to_timestamp(ending_time)
     sql = """UPDATE Events SET 
         name=:name, 
         category_id=:category_id, 
