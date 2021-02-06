@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, session, make_response, abort 
-import attributes
+import utils
 import events
 import users
 
@@ -12,17 +12,17 @@ def index():
         category = request.args["category"]
         county = request.args["county"]
         if (category and not county):
-            selected_events = events.get_all_filter_by_category(attributes.get_category_id(category))
+            selected_events = events.get_all_filter_by_category(utils.get_category_id(category))
         elif (county and not category):
-            selected_events = events.get_all_filter_by_county(attributes.get_county_id(county))
+            selected_events = events.get_all_filter_by_county(utils.get_county_id(county))
         elif (county and category):
-            selected_events = events.get_all_filter_by_category_and_county(attributes.get_category_id(category), attributes.get_county_id(county)) 
+            selected_events = events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)) 
         else: 
             selected_events = events.get_all()
     else:
         selected_events = events.get_all()
-    categories = attributes.get_categories()
-    counties = attributes.get_counties()
+    categories = utils.get_categories()
+    counties = utils.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
 
 # users
@@ -103,7 +103,7 @@ def report():
     if request.method == "POST":
         title = request.form["title"]
         content = request.form["content"]
-        attributes.add_report(title, content)
+        utils.add_report(title, content)
         return render_template("report.html", message="Kiitos viestistäsi")
 
 # events
@@ -115,7 +115,7 @@ def event(id):
 
 @app.route("/event_image/<int:id>")
 def event_image(id):
-    image = attributes.get_image_data(id)
+    image = utils.get_image_data(id)
     response = make_response(bytes(image))
     response.headers.set("Content-Type","image/jpeg")
     return response
@@ -125,18 +125,18 @@ def create_event():
     if request.method == "GET":
         if (session["suspended"]):
             return "<h1>SUSPENDED ACCOUNT, NO ACCESS</h1>"
-        categories = attributes.get_categories()
-        counties = attributes.get_counties()
+        categories = utils.get_categories()
+        counties = utils.get_counties()
         return render_template("create_event.html", categories=categories, counties=counties)
 
     if request.method == "POST":
         if (session["csrf_token"] != request.form["csrf_token"]):
             return abort(403)
         event_name = request.form["event_name"]
-        category_id = attributes.get_category_id(request.form["category"])
+        category_id = utils.get_category_id(request.form["category"])
         description = request.form["description"]
         price = request.form["price"]
-        county_id = attributes.get_county_id(request.form["county"])
+        county_id = utils.get_county_id(request.form["county"])
         city = request.form["city"]
         locale = request.form["locale"]
         address = request.form["address"]
@@ -147,7 +147,7 @@ def create_event():
         if (image):
             image_name = image.filename
             data = image.read()
-            image_id = attributes.add_image_and_return_id(image_name, data)
+            image_id = utils.add_image_and_return_id(image_name, data)
 
             events.add_event_with_image(
                 event_name,
@@ -183,12 +183,12 @@ def edit_event(id):
         if session["suspended"]:
             return "<h1>SUSPENDED ACCOUNT, NO ACCESS</h1>"
         event = events.get_event_by_id(id)
-        event_category = attributes.get_category_name(event[3])
-        event_county = attributes.get_county_name(event[4])
-        categories = attributes.get_categories()
-        counties = attributes.get_counties()
-        starting_time = attributes.timestamp_to_datetime(event[-4])
-        ending_time = attributes.timestamp_to_datetime(event[-3])
+        event_category = utils.get_category_name(event[3])
+        event_county = utils.get_county_name(event[4])
+        categories = utils.get_categories()
+        counties = utils.get_counties()
+        starting_time = utils.timestamp_to_datetime(event[-4])
+        ending_time = utils.timestamp_to_datetime(event[-3])
 
 
         return render_template(
@@ -205,10 +205,10 @@ def edit_event(id):
         if (session["csrf_token"] != request.form["csrf_token"]):
             return abort(403)
         event_name = request.form["event_name"]
-        category_id = attributes.get_category_id(request.form["category"])
+        category_id = utils.get_category_id(request.form["category"])
         description = request.form["description"]
         price = request.form["price"]
-        county_id = attributes.get_county_id(request.form["county"])
+        county_id = utils.get_county_id(request.form["county"])
         city = request.form["city"]
         locale = request.form["locale"]
         address = request.form["address"]
@@ -220,7 +220,7 @@ def edit_event(id):
         if (image):
             image_name = image.filename
             data = image.read()
-            image_id = attributes.add_image_and_return_id(image_name, data)
+            image_id = utils.add_image_and_return_id(image_name, data)
         
             events.edit_event_with_image(
                 id,
@@ -269,19 +269,19 @@ def admin_page():
     else:
         usernames = users.get_all_users_id_username_suspend()
         all_events = events.get_all()
-        reports = attributes.get_reports()
+        reports = utils.get_reports()
         user_count = users.get_user_count()
         event_count = events.get_event_count()
         return render_template("admin_page.html", usernames=usernames, events=all_events, reports=reports, user_count=user_count, event_count=event_count)
 
 @app.route("/mark_as_read_report/<int:id>")
 def mark_as_read_report(id):
-    attributes.mark_as_read_report(id)
+    utils.mark_as_read_report(id)
     return redirect("/admin_page")
 
 @app.route("/delete_report/<int:id>")
 def delete_report(id):
-    attributes.delete_report(id)
+    utils.delete_report(id)
     return redirect("/admin_page")
 
 @app.route("/suspend_user/<int:id>")
