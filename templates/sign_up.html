@@ -1,16 +1,24 @@
-<h3>Luo käyttäjätunnus</h3>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
 
-{% if error: %}
-    <p>Käyttäjätunnus on varattu</p>
-{% endif %}
-
-<form action="/sign_up" method="POST">
-    <p>Käyttäjätunnus:<br>
-        <input type="text" name="username">
-    </p>
-    <p>Salasana:<br>
-        <input type="password" name="password">
-    </p>
-    <input type="submit" value="Vahvista">
-</form>
-<a href="/">Etusivulle</a>
+<body>
+    <div class="content">
+        <div class="header">
+            <h3>Luo käyttäjätunnus</h3>
+        </div>
+        {% if error: %}
+            <p>Käyttäjätunnus on varattu</p>
+        {% endif %}
+        <div class="form">
+            <form action="/sign_up" method="POST">
+                <p>Käyttäjätunnus:<br>
+                    <input type="text" name="username">
+                </p>
+                <p>Salasana:<br>
+                    <input type="password" name="password">
+                </p>
+                <input type="submit" value="Vahvista" id="submit-button">
+            </form>
+        </div>
+        <a href="/">Etusivulle</a>
+    </div>
+</body>
