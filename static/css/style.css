@@ -1,28 +1,28 @@
+* {
+    font-family:'Courier New', Courier, monospace;
+}
+
 body {
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60vw;
-    height: 50vh;
-
+    width: 600px;
+    height: 350px;
+    padding: 30px;
 }
 .content {
-    border-style: solid;
-    border-color: grey;
+    border: 1px solid grey;
     border-radius: 20px;
     border-width: 1px;
-    padding: 30px;
-    width: 400px;
-    font-family: 'Georgia', serif;
-    font-size: large;
+    padding: 50px;
+    width: auto;
 }
-
 form #submit-button {
     border: none;
     text-align: center;
-    width: 5em;
-    height: 2em;
+    width: 120px;
+    height: 40px;
     background: rgb(0, 100, 255);
     color: white;
     border-radius: 5px;
