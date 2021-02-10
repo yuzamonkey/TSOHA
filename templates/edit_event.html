@@ -62,7 +62,7 @@
     Paikka *<br><input type="text" name="locale" value="{{event[5]}}" required> <br>
     Osoite *<br><input type="text" name="address" value="{{event[7]}}" required> <br>
     Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}" required> <br>
-    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" required> <br>
+    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" onblur="compare()" required> <br>
 
     Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>Aiemmin laitettu kuvatiedosto säilyy<br>
     <input type="file" name="image" accept=".jpg, .jpeg, .png">
@@ -72,3 +72,17 @@
 </form>
 
 <a href="/user_info">Takaisin</a>
+
+<script>
+    function compare() {
+        var starting_time = document.forms["create_event"]["starting_time"].value;
+        var ending_time = document.forms["create_event"]["ending_time"].value;
+        if (!starting_time) {
+            document.forms["create_event"]["starting_time"].value = ending_time;
+        }
+        if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
+            alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
+            document.forms["create_event"]["ending_time"].value = starting_time
+        } 
+    }
+</script>
