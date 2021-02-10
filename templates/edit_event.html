@@ -14,7 +14,7 @@
 <form action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data">
     <p>* = pakollinen</p>
 
-    Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}"> <br>
+    Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}" required> <br>
 
     <label for="category">Kategoria *<br></label>
     <select name="category">
@@ -28,8 +28,8 @@
     </select> <br>
 
     <label for="description">Kuvaus *<br></label>
-    <textarea id="description" name="description" rows="4" cols="50">{{event[8]}}</textarea><br>
-    Hinta <br><input type="text" name="price" value="{{event[-2]}}"> <br>
+    <textarea id="description" name="description" rows="4" cols="50" required>{{event[8]}}</textarea><br>
+    Hinta <br><input type="text" name="price" value="{{event[-2]}}" required> <br>
     <label for="county">Maakunta *<br></label>
     <select name="county">
         {% for county in counties %}
@@ -40,18 +40,17 @@
             {% endif %}
             {% endfor %}
     </select> <br>
-    Kaupunki *<br><input type="text" name="city" value="{{event[6]}}"> <br>
-    Paikka *<br><input type="text" name="locale" value="{{event[5]}}"> <br>
-    Osoite *<br><input type="text" name="address" value="{{event[7]}}"> <br>
-    Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}"> <br>
-    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}"> <br>
+    Kaupunki *<br><input type="text" name="city" value="{{event[6]}}" required> <br>
+    Paikka *<br><input type="text" name="locale" value="{{event[5]}}" required> <br>
+    Osoite *<br><input type="text" name="address" value="{{event[7]}}" required> <br>
+    Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}" required> <br>
+    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" required> <br>
 
-    Kuvatiedosto <br><input type="file" name="image">
+    Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>Aiemmin laitettu kuvatiedosto säilyy<br>
+    <input type="file" name="image" accept=".jpg, .jpeg, .png">
     <br><br>
     <input type="submit" value="Lähetä">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
-
-
 
 <a href="/user_info">Takaisin</a>

@@ -4,7 +4,7 @@
 
 <form action="/edit_username" method="POST">
     <p>Nykyinen käyttäjätunnus: {{username}}</p>
-    Uusi käyttäjätunnus: <input type="text" name="new_username"> <br>
+    Uusi käyttäjätunnus: <input type="text" name="new_username" required> <br>
     <input type="submit" value="Muuta">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
