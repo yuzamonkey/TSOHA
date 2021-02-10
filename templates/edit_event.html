@@ -29,7 +29,25 @@
 
     <label for="description">Kuvaus *<br></label>
     <textarea id="description" name="description" rows="4" cols="50" required>{{event[8]}}</textarea><br>
-    Hinta <br><input type="text" name="price" value="{{event[-2]}}" required> <br>
+   
+    {% if event[11] == "Ilmainen" %}
+        <input type="radio" value="free" name="cost" checked="checked">
+        <label for="free">Ilmainen</label>
+        <br>
+        <input type="radio" value="paid" name="cost">
+        <label for="paid">Maksullinen,  </label>
+        Hinta <input type="text" name="price" size="12"> <br>
+    {% else %}
+        <input type="radio" value="free" name="cost">
+        <label for="free">Ilmainen</label>
+        <br>
+        <input type="radio" value="paid" name="cost" checked="checked">
+        <label for="paid">Maksullinen,  </label>
+        Hinta <input type="text" name="price" size="12" value="{{event[11]}}"> <br>
+    {% endif %}
+
+
+
     <label for="county">Maakunta *<br></label>
     <select name="county">
         {% for county in counties %}
