@@ -10,7 +10,6 @@ Sovelluksen perustoiminnallisuudet on tehty
 
 Muutamia ominaisuuksia ei vielä ole, mutta ne tulevat myöhemmin:
  - Tapahtumien suodattaminen päivämäärän perusteella
- - Tapahtuman tietojen tarkistaminen ennen sen julkaisua. Pakolliset kentät tulisi olla täytetty ja tapahtuman alkamisajankohta tulla ennen loppumisajankohtaa.
  
  ### Testaus Herokussa
     
