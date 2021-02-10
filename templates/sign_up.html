@@ -6,15 +6,18 @@
             <h3>Luo käyttäjätunnus</h3>
         </div>
         {% if error: %}
-            <p>Käyttäjätunnus on varattu</p>
+            <p>{{message}}</p>
         {% endif %}
         <div class="form">
             <form action="/sign_up" method="POST">
                 <p>Käyttäjätunnus:<br>
-                    <input type="text" name="username">
+                    <input type="text" name="username" required>
                 </p>
                 <p>Salasana:<br>
-                    <input type="password" name="password">
+                    <input type="password" name="password" required>
+                </p>
+                <p>Salasana uudelleen:<br>
+                    <input type="password" name="password_validation" required>
                 </p>
                 <input type="submit" value="Vahvista" id="submit-button">
             </form>

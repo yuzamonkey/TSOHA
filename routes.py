@@ -90,11 +90,14 @@ def sign_up():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        if (password != request.form["password_validation"]):
+            print("INCORRECT VALIDATION")
+            return render_template("sign_up.html", error=True, message="Salasanat eivät täsmää")
         if (users.sign_up(username, password)):
-            return render_template("log_in.html", success=True, message="Käyttäjätunnus luotu, kirjaudu sisään")
+            return render_template("log_in.html", success=True, message="Käyttäjätunnus luotu, kirjaudu sisään", new_user=True)
         else:
-            print("FAIL")
-            return render_template("sign_up.html", error=True)
+            print("USERNAME TAKEN")
+            return render_template("sign_up.html", error=True, message="Käyttäjätunnus varattu")
 
 @app.route("/report", methods=["GET", "POST"])
 def report():

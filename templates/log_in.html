@@ -21,7 +21,9 @@
                 </p>
                 <input type="submit" value="Kirjaudu" id="submit-button">
             </form>
+        {% if not new_user: %}
             <p>Ei vielä käyttäjätunnusta? <a href="/sign_up">Luo käyttäjätunnus</a></p>
+        {% endif %}
         </div>
         <a href="/">Etusivulle</a>
     </div>
