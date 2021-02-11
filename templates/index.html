@@ -5,12 +5,10 @@
         <div class="title">
             <h1><a href="/" class="navbar_link">Tapahtumakalenteri</a></h1>
         </div>
-        <!-- {% if session.is_admin %}
-        <p>Hello admin</p>
-        {% endif %} -->
+
         <div class="links">
-        {% if session.user_id %}
-            
+
+            {% if session.user_id %}
             <p>
                 <a href="/create_event" class="navbar_link">Luo tapahtuma&emsp;</a>
                 <a href="/user_info" class="navbar_link">Omat tiedot&emsp;</a>
@@ -19,46 +17,57 @@
             </p>
             {% else %}
             <p>
-                <a href="/log_in" class="navbar_link">Kirjaudu sisään &emsp;</a> 
+                <a href="/log_in" class="navbar_link">Kirjaudu sisään &emsp;</a>
                 <a href="/sign_up" class="navbar_link">Luo käyttäjätunnus</a>
             </p>
             {% endif %}
         </div>
     </div>
-
+    {% if session.user_id %}
+    <p>Hellurei, {{session.username}}</p>
+    {% endif %}
     {% if session.suspended %}
-        <p><b>SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
+    <p><b>SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
     {% endif %}
 
-    <h4>Suodata tuloksia</h4>
-    <form action="/" method="GET">
-        <label for="category">Kategoria</label>
-        <input list="categories" name="category">
-        <datalist id="categories">
-            {% for category in categories %}
-            <option>{{category}}
-                {% endfor %}
-        </datalist> <br>
+    <div class="filters">
+        <h4>Suodata tuloksia</h4>
+        <form action="/" method="GET">
+            <label for="category">Kategoria</label>
+            <input list="categories" name="category">
+            <datalist id="categories">
+                {% for category in categories %}
+                <option>{{category}}
+                    {% endfor %}
+            </datalist> 
 
-        <label for="county">Maakunta</label>
-        <input list="counties" name="county">
-        <datalist id="counties">
-            {% for county in counties %}
-            <option>{{county}}
-                {% endfor %}
-        </datalist> <br>
-        </datalist>
-        <input type="submit" value="Suodata">
-    </form>
+            <label for="county">&emsp;Maakunta</label>
+            <input list="counties" name="county">
+            <datalist id="counties">
+                {% for county in counties %}
+                <option>{{county}}
+                    {% endfor %}
+            </datalist>
+            &emsp;
+            <input type="submit" value="Suodata">
+        </form>
+    </div>
 
     <h3>Tapahtumat:</h3>
-    {% for event in events %}
-    <div>
-        <p>{{event["name"]}}, {{event["category"]}}, {{event["city"]}}, {{event["county"]}}, {{event["starting_time"]}},
-            {{event["price"]}}
-            <a href="/event/{{event.id}}">Tapahtumasivulle</a>
-        </p>
+    <div class="events">
+        {% for event in events %}
+        <div class="event" onclick="location.href='/event/{{event.id}}';">
+            {% if event["image_id"] %}
+            <img src="/event_image/{{event.image_id}}" class="event_image">
+            {% endif %}
+            <p><b>{{event["name"]}}</b></p>
+            <p> {{event["category"]}}</p>
+            <p> {{event["city"]}}, {{event["county"]}}</p>
+            <p> {{event["starting_time"]}}</p>
+            <p> {{event["price"]}}</p>
+            </p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 
 </body>

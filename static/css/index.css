@@ -57,3 +57,36 @@ body {
 .navbar_link:active {
     color: darkgray;
 }
+
+.filters {
+    border: 1px solid yellowgreen;
+    width: 100%;
+    padding: 10px;
+}
+
+.events {
+    border: 3px solid salmon;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    align-items: center;
+}
+.event {
+    border: 1px solid green;
+    width: 200px;
+    height: auto;
+    margin: 30px;
+    padding: 20px;
+}
+.event_image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event:hover {
+    opacity: 0.5;
+}
+
