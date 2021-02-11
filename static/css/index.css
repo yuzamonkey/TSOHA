@@ -1,0 +1,59 @@
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+body {
+    border: 3px solid red;
+    width: auto;
+}
+.navbar {
+    border: 10px solid darkslategrey;
+    background-color: rgb(50,100,100);
+    width: auto;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    align-items: center;
+
+}
+.title {
+    border: 1px solid greenyellow;
+    margin:auto;
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    align-items:center;
+}
+.links {
+    border: 1px solid yellow;
+    margin: auto;
+    width: 65%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar_link {
+    color:white;
+    text-decoration: none;
+}
+/* unvisited link
+.navbar_link:link {
+    color:aqua;
+}
+/*visited link
+.navbar_link:link {
+    color:red;
+} 
+*/
+/* mouse over link */
+.navbar_link:hover {
+    color: lightgray;
+}
+/* selected link */
+.navbar_link:active {
+    color: darkgray;
+}
