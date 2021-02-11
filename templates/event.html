@@ -1,18 +1,25 @@
-<div>
-    <img src="/event_image/{{image_id}}" alt="Event_image" width="auto" height="auto">
-</div>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/event.css') }}">
 
-<div>
-    <p>Tapahtuman järjestäjä: {{event["creator"]}}</p>
-    <p>Paikka: {{event["locale"]}}</p>
-    <p>Osoite: {{event["address"]}}, {{event["city"]}}</p>
-    <p>Alkaa: {{event["starting_time"]}}</p>
-    <p>Loppuu: {{event["ending_time"]}}</p>
-    <p>Hinta: {{event["price"]}}</p>
-</div>
-<div>
-    <h3>{{event["name"]}}</h3>
-    {{event["description"]}}
-</div>
-<br>
-<a href="/">Etusivulle</a>
+<body>
+    <div class="content">
+        <img src="/event_image/{{image_id}}" alt="Event_image" class="event_image">
+    
+        <div class="info">
+            <p>Tapahtuman järjestäjä: {{event["creator"]}}</p>
+            <p>Paikka: {{event["locale"]}}</p>
+            <p>Osoite: {{event["address"]}}, {{event["city"]}}</p>
+            <p>Alkaa: {{event["starting_time"]}}</p>
+            <p>Loppuu: {{event["ending_time"]}}</p>
+            <p>Hinta: {{event["price"]}}</p>
+        </div>
+        <div class="title_and_description">
+            <div class="title">
+                <h2>{{event["name"]}}</h2>
+            </div>
+            <div class="description">
+                {{event["description"]}}
+            </div>
+        </div>
+    </div>
+    <a href="/">Etusivulle</a>
+</body>
