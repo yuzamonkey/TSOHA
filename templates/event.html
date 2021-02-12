@@ -2,8 +2,9 @@
 
 <body>
     <div class="content">
-        <img src="/event_image/{{image_id}}" alt="Event_image" class="event_image">
-    
+        {% if event["image_id"]%}
+            <img src="/event_image/{{image_id}}" alt="Event_image" class="event_image">
+        {% endif %}
         <div class="info">
             <p>Tapahtuman järjestäjä: {{event["creator"]}}</p>
             <p>Paikka: {{event["locale"]}}</p>
