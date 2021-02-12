@@ -1,15 +1,12 @@
 # Tapahtumakalenteri
 
-https://tapahtumakalenteri.herokuapp.com/ (päivitetty 6.2.2020)
+https://tapahtumakalenteri.herokuapp.com/ (päivitetty 12.2.2020)
 
 Tietokantasovellus tapahtumien mainostamiseen ja tapahtumien etsimiseen. Tapahtumia voivat olla mm. konsertit, näyttelyt ja teatteriesitykset.
 
 ### Sovelluksen nykyinen tilanne 
 
-Sovelluksen perustoiminnallisuudet on tehty
-
-Muutamia ominaisuuksia ei vielä ole, mutta ne tulevat myöhemmin:
- - Tapahtumien suodattaminen päivämäärän perusteella
+Sovelluksen perustoiminnallisuudet on tehty. Merkittävät sovelluksen käyttöön kohdistuvat bugit on paikattu. CSS:ää lisätty index ja event-sivuille
  
  ### Testaus Herokussa
     

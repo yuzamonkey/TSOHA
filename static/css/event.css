@@ -1,5 +1,5 @@
 body {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     margin: auto;
     margin-bottom: 200px;
     width: 800px;
@@ -19,15 +19,32 @@ body {
 .info {
     border-right: 5px solid lightgrey;
     padding: 20px;
-    width: 30%;
+    width: 25%;
 } 
 .title_and_description {
     width: 60%;
 }
 .title {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     padding: 20px;
 }
 .description {
-    border: 3px solid yellowgreen;
+    /* border: 3px solid yellowgreen; */
+    padding: 20px;
 }
+.back_to_index {
+    border:1px solid black;
+    width:fit-content;
+    padding: 10px;
+    margin-left: 20px;
+    background: rgb(0, 100, 255);
+    border-radius: 5px;
+}
+.back_to_index:hover {
+    background: rgb(0, 40, 255);
+}
+.link {
+    color:white;
+    text-decoration: none;
+}
+

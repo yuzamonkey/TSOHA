@@ -57,7 +57,9 @@
         </form>
     </div>
 
-    <h3>Tulevat tapahtumat</h3>
+    <div class="upcoming_title">
+        <h2>Tulevat tapahtumat</h2>
+    </div>
     <div class="events">
         {% for event in events %}
         <div class="event" onclick="location.href='/event/{{event.id}}';">

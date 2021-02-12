@@ -3,7 +3,7 @@
 }
 
 body {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     width: auto;
 }
 .navbar {
@@ -18,7 +18,7 @@ body {
 
 }
 .title {
-    border: 1px solid greenyellow;
+    /* border: 1px solid greenyellow; */
     margin:auto;
     width: 30%;
     height: auto;
@@ -28,7 +28,7 @@ body {
     align-items:center;
 }
 .links {
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     margin: auto;
     width: 65%;
     height: auto;
@@ -59,13 +59,19 @@ body {
 }
 
 .filters {
-    border: 1px solid yellowgreen;
+    border: 1px solid yellowgreen; 
     width: 100%;
     padding: 10px;
 }
 
+.upcoming_title {
+    border-top: 1px solid darkcyan;
+    border-bottom: 1px solid darkcyan;
+    padding-left: 50px;
+}
+
 .events {
-    border: 3px solid salmon;
+    /* border: 3px solid salmon; */
     margin: 5px;
     padding: 5px;
     display: flex;
@@ -89,4 +95,5 @@ body {
 .event:hover {
     opacity: 0.5;
 }
+
 
