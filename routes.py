@@ -5,22 +5,32 @@ import events
 import users
 
 
+
 @app.route("/")
 def index():
     #filters
     if request.args:
         category = request.args["category"]
         county = request.args["county"]
-        if (category and not county):
-            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category(utils.get_category_id(category)))
-        elif (county and not category):
-            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_county(utils.get_county_id(county)))
-        elif (county and category):
-            selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)))
-        else: 
-            selected_events = utils.events_to_dictionaries(events.get_all())
+        date = request.args["date"]
+        print("FILTERS == ", category, county, date)
+        selected_events = utils.events_to_dictionaries(events.get_all_upcoming())
+        if (category):
+            selected_events = utils.filter_by_category(selected_events, category)
+        if (county):
+            selected_events = utils.filter_by_county(selected_events, county)
+        if (date):
+            selected_events = utils.filter_by_date(selected_events, date)
+        # if (category and not county):
+        #     selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category(utils.get_category_id(category)))
+        # elif (county and not category):
+        #     selected_events = utils.events_to_dictionaries(events.get_all_filter_by_county(utils.get_county_id(county)))
+        # elif (county and category):
+        #     selected_events = utils.events_to_dictionaries(events.get_all_filter_by_category_and_county(utils.get_category_id(category), utils.get_county_id(county)))
+        # else: 
+        #     selected_events = utils.events_to_dictionaries(events.get_all_upcoming_by_date())
     else:
-        selected_events = utils.events_to_dictionaries(events.get_all())
+        selected_events = utils.events_to_dictionaries(events.get_all_upcoming())
     categories = utils.get_categories()
     counties = utils.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)

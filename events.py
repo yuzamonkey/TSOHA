@@ -1,26 +1,32 @@
 from db import db
 import users
 import utils
-
+from datetime import datetime
 
 def get_all():
     all_events = db.session.execute("SELECT * FROM Events ORDER BY Starting_time").fetchall()
     return all_events
 
-def get_all_filter_by_category(category_id):
-    sql = "SELECT * FROM Events WHERE category_id=:category_id ORDER BY Starting_time"
-    events = db.session.execute(sql, {"category_id":category_id})
-    return events
+# def get_all_filter_by_category(category_id):
+#     sql = "SELECT * FROM Events WHERE category_id=:category_id ORDER BY Starting_time"
+#     events = db.session.execute(sql, {"category_id":category_id})
+#     return events
 
-def get_all_filter_by_county(county_id):
-    sql = "SELECT * FROM Events WHERE county_id=:county_id ORDER BY Starting_time"
-    events = db.session.execute(sql, {"county_id":county_id})
-    return events
+# def get_all_filter_by_county(county_id):
+#     sql = "SELECT * FROM Events WHERE county_id=:county_id ORDER BY Starting_time"
+#     events = db.session.execute(sql, {"county_id":county_id})
+#     return events
 
-def get_all_filter_by_category_and_county(category_id, county_id):
-    sql = "SELECT * FROM Events WHERE category_id=:category_id and county_id=:county_id ORDER BY Starting_time"
-    events = events = db.session.execute(sql, {"category_id":category_id,"county_id":county_id})
-    return events
+# def get_all_filter_by_category_and_county(category_id, county_id):
+#     sql = "SELECT * FROM Events WHERE category_id=:category_id and county_id=:county_id ORDER BY Starting_time"
+#     events = events = db.session.execute(sql, {"category_id":category_id,"county_id":county_id})
+#     return events
+
+def get_all_upcoming():
+    date = str(datetime.now().date())
+    sql = "SELECT * FROM Events WHERE CAST(starting_time AS DATE) > :date ORDER BY Starting_time"
+    all_events = db.session.execute(sql, {"date":date}).fetchall()
+    return all_events
 
 def get_event_by_id(id):
     sql = "SELECT * FROM Events WHERE id=:id"

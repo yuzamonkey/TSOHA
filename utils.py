@@ -1,5 +1,6 @@
 from db import db
 import users
+from datetime import datetime
 
 def datetime_to_timestamp(date_result):
     date = date_result[:10]
@@ -20,6 +21,18 @@ def timestamp_to_dmyhm(timestamp):
     minutes = str(timestamp)[14:16]
     ddmmyyyyhhmm = f"{day}.{month}.{year} {hours}:{minutes}"
     return ddmmyyyyhhmm
+
+def dmyhm_to_py_datetime(dmyhm):
+    day = dmyhm[:2]
+    month = dmyhm[3:5]
+    year = dmyhm[6:10]
+    return datetime(int(year), int(month), int(day))
+
+def date_to_py_datetime(date):
+    year = str(date)[:4]
+    month = str(date)[5:7]
+    day = str(date)[8:10]
+    return datetime(int(year), int(month), int(day))
 
 def event_to_dictionary(event):
     dictionary = {
@@ -50,6 +63,29 @@ def result_to_array(response):
     for item in response:
         array.append(str(item)[2:-3])
     return array
+
+def filter_by_category(events, category):
+    filtered = []
+    for event in events:
+        if event["category"] == category:
+            filtered.append(event)
+    return filtered
+
+def filter_by_county(events, county):
+    filtered = []
+    for event in events:
+        if event["county"] == county:
+            filtered.append(event)
+    return filtered
+
+def filter_by_date(events, date):
+    filtered = []
+    py_datetime = date_to_py_datetime(date)
+    for event in events:
+        event_py_datetime = dmyhm_to_py_datetime(event["starting_time"])
+        if (event_py_datetime >= py_datetime):
+            filtered.append(event)
+    return filtered
 
 def get_categories():
     categories = db.session.execute("SELECT Category FROM Categories ORDER BY Category").fetchall()
