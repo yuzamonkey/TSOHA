@@ -59,8 +59,8 @@ body {
 }
 
 .filters {
-    border: 1px solid yellowgreen; 
-    width: 100%;
+    /* border: 1px solid yellowgreen;  */
+    width: auto;
     padding: 10px;
 }
 

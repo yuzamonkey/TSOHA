@@ -23,12 +23,12 @@ form #submit-button {
     text-align: center;
     width: 120px;
     height: 40px;
-    background: rgb(0, 100, 255);
+    background: rgb(50, 100, 100);
     color: white;
     border-radius: 5px;
     font-size: large;
 }
 form #submit-button:hover {
-    background: rgb(0, 40, 255);
+    background: darkslategray;
     color: white;
 }
