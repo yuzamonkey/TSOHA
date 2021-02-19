@@ -1,0 +1,129 @@
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+body {
+    margin: auto;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 200px;
+    width: auto;
+}
+
+.user_information {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px 40px;
+    margin-top: 30px;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.username_and_password {
+    /* border: 1px solid black; */
+    width: 80%;
+    display: flex;
+    justify-content: flex-start; 
+    align-content: center;
+    align-items: center;
+}
+
+.edit_username_or_password {
+    border: 1px solid black;
+    color:white;
+    text-decoration: none;
+    background-color: rgb(28, 138, 228);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.edit_username_or_password:hover {
+    background-color: darkslategray;
+}
+
+.delete {
+    /* border: 1px solid black; */
+    width: 15%;
+    display: flex;
+    justify-content: flex-end; 
+}
+.delete_button {
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+.delete_button:hover {
+    background-color: darkred;
+}
+
+.create_event {
+    color:white;
+    text-decoration: none;
+    background-color: rgb(50, 100, 100);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.create_event:hover {
+    background-color: darkslategray;
+}
+
+.event_info {
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 30px;
+    width: auto;
+}
+
+.events {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    align-items: center;
+}
+.event {
+    border: 1px solid green;
+    width: 200px;
+    height: 400px;
+    margin: 30px;
+    padding: 20px;
+}
+.event_image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.edit_link {
+    color:white;
+    text-decoration: none;
+    background-color: rgb(50, 100, 100);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.edit_link:hover {
+    background-color: darkslategray;
+}
+
+.to_event_page {
+    color:white;
+    text-decoration: none;
+    background-color: rgb(50, 100, 100);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.to_event_page:hover {
+    background-color: darkslategray;
+}

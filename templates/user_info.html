@@ -1,27 +1,48 @@
-<h2>Käyttäjän {{username}} tiedot</h2>
-{% if session.is_admin %}
-<a href="/admin_page">admin työkalut</a>
-{% endif %}
-<p>Käyttäjätunnus: {{username}} <a href="/edit_username">Vaihda</a></p>
-<p>Salasana: ***** <a href="/edit_password">Vaihda</a></p>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/user_info.css') }}">
 
-<button onclick="confirm_window()">Poista käyttäjä</button>
-
-<script>
-    function confirm_window() {
-        var del = confirm("Käyttäjän poistaminen poistaa myös tekemäsi tapahtumat. Haluatko poistaa käyttäjän {{username}}?");
-        if (del) {
-            window.location.href = "/delete_user/{{user_id}}";
+<body>
+    <h2>Käyttäjän {{username}} tiedot</h2>
+        {% if session.is_admin %}
+            <a href="/admin_page">admin työkalut</a>
+        {% endif %}
+    <div class="user_information">    
+        <div class="username_and_password">Käyttäjätunnus: {{username}} &emsp;<a href="/edit_username" class="edit_username_or_password">Vaihda käyttäjätunnus</a>
+            &emsp; Salasana: ***** &emsp;<a href="/edit_password" class="edit_username_or_password">Vaihda salasana</a></div>
+            <div class="delete"><button onclick="confirm_window()" class="delete_button">Poista käyttäjä</button></div>
+    </div>
+    <script>
+        function confirm_window() {
+            var del = confirm("Käyttäjän poistaminen poistaa myös tekemäsi tapahtumat. Haluatko poistaa käyttäjän {{username}}?");
+            if (del) {
+                window.location.href = "/delete_user/{{user_id}}";
+            }
         }
-    }
-</script>
-<br>
+    </script>
+    <br>
 
+    <div class="event_info">
 
-<h3>Tapahtumasi</h3>
-{% for event in users_events %}
-    <p>{{event.name, event.category, event.starting_time, event.price}} <a href="/event/{{event.id}}">Tapahtumasivulle</a> <a href="/edit_event/{{event.id}}">Muokkaa</a></p> 
-{% endfor %}
-<a href="create_event">Luo tapahtuma</a>
+        <h3>Tapahtumasi</h3>
+        <a href="create_event" class="create_event">Luo tapahtuma</a>
 
-<a href="/">Etusivulle</a>
+        <div class="events">
+            {% for event in users_events %}
+                <div class="event">
+                    {% if event["image_id"] %}
+                        <img src="/event_image/{{event.image_id}}" class="event_image">
+                    {% endif %}
+                    <p><b>{{event["name"]}}</b></p>
+                    <a href="/edit_event/{{event.id}}" class="edit_link">Muokkaa</a>
+                    <a href="/event/{{event.id}}" class="to_event_page">Tapahtumasivulle</a>
+                    <p> {{event["address"]}}, {{event["city"]}}, {{event["county"]}}</p>
+                    <p> {{event["starting_time"]}}</p>
+                    <p> {{event["price"]}}</p>
+                    
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="/">Etusivulle</a>
+</body>
