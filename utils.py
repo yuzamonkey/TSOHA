@@ -120,6 +120,11 @@ def get_image_data(id):
     image_data = db.session.execute(sql, {"id":id}).fetchone()[0]
     return image_data
 
+def delete_image(id):
+    sql = "DELETE FROM Images WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
 def add_image_and_return_id(name, data):
     sql = "INSERT INTO images (name,data) VALUES (:name,:data) RETURNING id"
     id = db.session.execute(sql, {"name":name,"data":data}).fetchone()[0]

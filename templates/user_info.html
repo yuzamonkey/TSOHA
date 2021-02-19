@@ -3,6 +3,17 @@
 <p>Käyttäjätunnus: {{username}} <a href="/edit_username">Vaihda</a></p>
 <p>Salasana: ***** <a href="/edit_password">Vaihda</a></p>
 
+<button onclick="confirm_window()">Poista käyttäjä</button>
+
+<script>
+    function confirm_window() {
+        var del = confirm("Käyttäjän poistaminen poistaa myös tekemäsi tapahtumat. Haluatko poistaa käyttäjän {{username}}?");
+        if (del) {
+            window.location.href = "/delete_user/{{user_id}}";
+        }
+    }
+</script>
+
 {% if session.is_admin %}
 <a href="/admin_page">admin työkalut</a>
 {% endif %}
@@ -11,5 +22,6 @@
 {% for event in users_events %}
     <p>{{event}} <a href="/event/{{event[0]}}">Tapahtumasivulle</a> <a href="/edit_event/{{event[0]}}">Muokkaa</a></p> 
 {% endfor %}
+<a href="create_event">Luo tapahtuma</a>
 
 <a href="/">Etusivulle</a>

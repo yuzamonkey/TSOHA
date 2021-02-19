@@ -13,12 +13,12 @@ body {
     height: 50px;
     display: flex;
     flex-wrap: wrap;
-    align-content:center;
+    align-content: center;
     align-items: center;
 
 }
 .title {
-    /* border: 1px solid greenyellow; */
+    /* border: 1px solid greenyellow;  */
     margin:auto;
     width: 30%;
     height: auto;
@@ -28,13 +28,12 @@ body {
     align-items:center;
 }
 .links {
-    /* border: 1px solid yellow; */
+    /* border: 1px solid yellow;  */
     margin: auto;
     width: 65%;
     height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end; 
 }
 .navbar_link {
     color:white;

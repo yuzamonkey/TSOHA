@@ -44,7 +44,7 @@ def user_info():
     user_id = users.session["user_id"]
     username = users.get_username(user_id)
     users_events = events.get_events_by_user_id(user_id)
-    return render_template("user_info.html", username=username, users_events=users_events)
+    return render_template("user_info.html", user_id=user_id, username=username, users_events=users_events)
 
 @app.route("/edit_username", methods=["GET", "POST"])
 def edit_username():
@@ -278,7 +278,10 @@ def edit_event(id):
 
 @app.route("/delete_event/<int:id>", methods=["GET", "POST"])
 def delete_event(id):
+    image_id = events.get_image_id(id)
     events.delete_event(id)
+    if (image_id):
+        utils.delete_image(image_id)
     if users.session["is_admin"]:
         return redirect("/admin_page")
     else:
@@ -319,5 +322,21 @@ def remove_suspension(id):
 
 @app.route("/delete_user/<int:id>")
 def delete_user(id):
-    users.delete(id)
-    return redirect("/admin_page")
+    users_events = events.get_events_by_user_id(id)
+    image_ids = []
+    for event in users_events:
+        #delete images
+        event_image_id = events.get_image_id(event[0])
+        if (event_image_id):
+            image_ids.append(event_image_id)
+        events.delete_event(event[0])
+    for image_id in image_ids:
+        utils.delete_image(image_id)
+    if (users.session["is_admin"]):
+        users.delete(id)
+        return redirect("/admin_page")
+    else:
+        users.log_out()
+        users.delete(id)
+        return redirect("/")
+    
