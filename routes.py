@@ -43,7 +43,7 @@ def log_in():
 def user_info():
     user_id = users.session["user_id"]
     username = users.get_username(user_id)
-    users_events = events.get_events_by_user_id(user_id)
+    users_events = utils.events_to_dictionaries(events.get_events_by_user_id(user_id))
     return render_template("user_info.html", user_id=user_id, username=username, users_events=users_events)
 
 @app.route("/edit_username", methods=["GET", "POST"])
@@ -294,7 +294,7 @@ def admin_page():
         return "No access"
     else:
         usernames = users.get_all_users_id_username_suspend()
-        all_events = events.get_all()
+        all_events = utils.events_to_dictionaries(events.get_all())
         reports = utils.get_reports()
         user_count = users.get_user_count()
         event_count = events.get_event_count()

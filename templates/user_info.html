@@ -1,5 +1,7 @@
 <h2>Käyttäjän {{username}} tiedot</h2>
-
+{% if session.is_admin %}
+<a href="/admin_page">admin työkalut</a>
+{% endif %}
 <p>Käyttäjätunnus: {{username}} <a href="/edit_username">Vaihda</a></p>
 <p>Salasana: ***** <a href="/edit_password">Vaihda</a></p>
 
@@ -13,14 +15,12 @@
         }
     }
 </script>
+<br>
 
-{% if session.is_admin %}
-<a href="/admin_page">admin työkalut</a>
-{% endif %}
 
 <h3>Tapahtumasi</h3>
 {% for event in users_events %}
-    <p>{{event}} <a href="/event/{{event[0]}}">Tapahtumasivulle</a> <a href="/edit_event/{{event[0]}}">Muokkaa</a></p> 
+    <p>{{event.name, event.category, event.starting_time, event.price}} <a href="/event/{{event.id}}">Tapahtumasivulle</a> <a href="/edit_event/{{event.id}}">Muokkaa</a></p> 
 {% endfor %}
 <a href="create_event">Luo tapahtuma</a>
 
