@@ -9,6 +9,10 @@ Sovellus on harjoitustyö HY:n kurssille Tietokantasovellus.
 ### Sovelluksen nykyinen tilanne 
 
 Sovelluksen perustoiminnallisuudet ovat tehty. Merkittävät sovelluksen käyttöön kohdistuvat bugit on paikattu. CSS:ää lisätty index ja event-sivuille
+
+Pientä hiottavaa:
+- Kaavakkeiden tekstikenttien maksimipituudet
+- Rivinvaihdon huomiointi description-kentässä. Rivinvaihdot eivät näy tapahtumasivulla.
  
  ### Testaus Herokussa
     

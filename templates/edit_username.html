@@ -1,11 +1,23 @@
-{% if error %}
-<p>{{message}}</p>
-{% endif %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/usernamepassword.css') }}">
 
-<form action="/edit_username" method="POST">
-    <p>Nykyinen käyttäjätunnus: {{username}}</p>
-    Uusi käyttäjätunnus: <input type="text" name="new_username" required> <br>
-    <input type="submit" value="Muuta">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
+<body>
+    <div class="content">
+        <div class="header">
+            <h3>Vaihda käyttäjänimi</h3>
+        </div>
+        {% if error %}
+        <p>{{message}}</p>
+        {% endif %}
 
+        <div class="form">
+            <form action="/edit_username" method="POST">
+                <p>Nykyinen käyttäjätunnus: <br>{{username}}</p>
+                Uusi käyttäjätunnus: <br><input type="text" name="new_username" required> <br><br>
+                <input id="submit-button" type="submit" value="Vaihda" >
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+        </div>
+        <a href="/user_info">Takaisin</a>
+    </div>
+
+</body>
