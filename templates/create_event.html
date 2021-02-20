@@ -1,51 +1,56 @@
-<h3>Luo tapahtuma</h3>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/eventform.css') }}">
 
-<form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data">
+<body>
 
-    <p>* = pakollinen</p>
+    <h2>Luo tapahtuma</h2>
 
-    Tapahtuman nimi *<br><input type="text" name="event_name" required> <br>
+    <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" class="form">
 
-    <label for="category">Kategoria *<br></label>
-    <select name="category">
-        {% for category in categories %}
-        <option>{{category}}
-            {% endfor %}
-    </select> <br>
+        <p>* = pakollinen</p>
 
-    <label for="description">Kuvaus *<br></label>
-    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+        Tapahtuman nimi *<br><input type="text" name="event_name" required> <br>
 
-    <input type="radio" value="free" name="cost" checked="checked">
-    <label for="free">Ilmainen</label>
-    <br>
-    <input type="radio" value="paid" name="cost">
-    <label for="paid">Maksullinen, </label>
-    Hinta <input type="text" name="price" size="12"> <br>
+        <label for="category">Kategoria *<br></label>
+        <select name="category">
+            {% for category in categories %}
+            <option>{{category}}
+                {% endfor %}
+        </select> <br>
 
-    <label for="county">Maakunta *<br></label>
-    <select name="county" required>
-        {% for county in counties %}
-        <option>{{county}}
-            {% endfor %}
-    </select> <br>
-    Kaupunki *<br><input type="text" name="city" required> <br>
-    Paikka *<br><input type="text" name="locale" required> <br>
-    Osoite *<br><input type="text" name="address" required> <br>
-    Alkamisaika *<br><input type="datetime-local" name="starting_time" onblur="set_ending_time()" required> <br>
-    Loppumisaika *<br><input type="datetime-local" name="ending_time" onblur="compare()" required> <br>
+        <label for="description">Kuvaus *<br></label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
 
-    Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>
-    <input type="file" name="image" accept=".jpg, .jpeg, .png">
-    <br><br>
-    <input type="submit" value="Lähetä">
+        <input type="radio" value="free" name="cost" checked="checked">
+        <label for="free">Ilmainen</label>
+        <br>
+        <input type="radio" value="paid" name="cost">
+        <label for="paid">Maksullinen, </label>
+        Hinta <input type="text" name="price" size="12"> <br>
 
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <label for="county">Maakunta *<br></label>
+        <select name="county" required>
+            {% for county in counties %}
+            <option>{{county}}
+                {% endfor %}
+        </select> <br>
+        Kaupunki *<br><input type="text" name="city" required> <br>
+        Paikka *<br><input type="text" name="locale" required> <br>
+        Osoite *<br><input type="text" name="address" required> <br>
+        Alkamisaika *<br><input type="datetime-local" name="starting_time" onblur="set_ending_time()" required> <br>
+        Loppumisaika *<br><input type="datetime-local" name="ending_time" onblur="compare()" required> <br>
+        <br>
+        Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>
+        <input type="file" name="image" accept=".jpg, .jpeg, .png">
+        <br><br>
+        <input id="submit-button" type="submit" value="Lähetä">
 
-    <br><br>
-    <a href="/">Etusivulle</a>
-</form>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 
+        <br><br>
+        
+    </form>
+    <a class="back_to_index" href="/">Etusivulle</a>
+</body>
 <script>
     function set_ending_time() {
         var starting_time = document.forms["create_event"]["starting_time"].value;
@@ -63,3 +68,4 @@
         } 
     }
 </script>
+
