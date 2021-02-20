@@ -4,6 +4,7 @@
 
 body {
     /* border: 3px solid red; */
+    margin: auto;
     width: auto;
 }
 .navbar {
@@ -57,20 +58,37 @@ body {
     color: darkgray;
 }
 
-.filters {
-    /* border: 1px solid yellowgreen;  */
-    width: auto;
+.create_event {
+    margin: auto;
+    color:white;
+    text-decoration: none;
+    background-color: darkslategray;
+    border-radius: 5px;
     padding: 10px;
+    padding-right: 0;
+    margin-right: 5px;
+}
+.create_event:hover {
+    background-color: darkslategray;
+}
+
+.content {
+    border: 1px solid gray;
+    border-radius: 20px;
+    margin: 10px;
 }
 
 .upcoming_title {
-    border-top: 1px solid darkcyan;
-    border-bottom: 1px solid darkcyan;
-    padding-left: 50px;
+    padding-left: 10px;
+}
+
+.filters {
+    width: auto;
+    padding: 10px;
+    padding-top: 0px;
 }
 
 .events {
-    /* border: 3px solid salmon; */
     margin: 5px;
     padding: 5px;
     display: flex;

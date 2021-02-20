@@ -1,13 +1,20 @@
-<h3>Raportoi ylläpidolle ongelmasta</h3>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/report.css') }}">
 
-{% if message  %}
-<p>{{message}}</p>
-{%  endif %}
+<body>
+    <div class="content">
+        <h3>Raportoi ylläpidolle ongelmasta</h3>
 
-<form action="/report" method="POST">
-    Otsikko <br><input type="text" name="title" required> <br>
-    <label for="content">Kuvaile ongelmaa: <br></label>
-    <textarea name="content" rows="4" cols="50" required></textarea><br>
-    <input type="submit" value="Lähetä">    
-</form>
-<a href="/">Etusivulle</a>
+        {% if message  %}
+        <p>{{message}}</p>
+        {%  endif %}
+
+        <form action="/report" method="POST">
+            Otsikko <br><input type="text" name="title" required> <br>
+            <label for="content">Kuvaile ongelmaa: <br></label>
+            <textarea name="content" rows="4" cols="50" required></textarea><br>
+            <input id="submit-button" type="submit" value="Lähetä">    
+        </form>
+    </div>
+    <a class="back_to_index" href="/">Etusivulle</a>
+
+</body>

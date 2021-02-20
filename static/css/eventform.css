@@ -40,7 +40,7 @@ h2 {
 
 .delete_button {
     color: white;
-    background-color: red;
+    background-color: rgb(230, 0, 0);
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;

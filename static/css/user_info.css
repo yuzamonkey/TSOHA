@@ -4,17 +4,23 @@
 
 body {
     margin: auto;
-    padding: 20px;
-    margin-top: 10px;
     margin-bottom: 200px;
     width: auto;
 }
 
+.title {
+    padding: 10px;
+    color: white;
+    border: 10px solid darkslategrey;
+    border-bottom: 0px;
+    background-color: rgb(50,100,100);
+    margin: 0;
+}
+
 .user_information {
-    border: 1px solid gray;
-    border-radius: 5px;
+    border:10px solid darkslategrey;
+    border-top: 1px solid darkslategray;
     padding: 5px 40px;
-    margin-top: 30px;
     width: auto;
     display: flex;
     flex-wrap: wrap;
@@ -36,13 +42,13 @@ body {
     border: 1px solid black;
     color:white;
     text-decoration: none;
-    background-color: rgb(28, 138, 228);
+    background-color: rgb(0, 82, 150);
     border-radius: 5px;
     padding: 5px;
 }
 
 .edit_username_or_password:hover {
-    background-color: darkslategray;
+    background-color: rgb(0, 45, 82);
 }
 
 .delete {
@@ -53,18 +59,29 @@ body {
 }
 .delete_button {
     color: white;
-    background-color: red;
+    background-color: rgb(230, 0, 0);
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
-    
 }
 
 .delete_button:hover {
     background-color: darkred;
 }
 
+.events_title {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+.event_info {
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding-top: 30px;
+    margin: 10px;
+    width: auto;
+}
 .create_event {
+    margin: 40px;
     color:white;
     text-decoration: none;
     background-color: rgb(50, 100, 100);
@@ -73,14 +90,6 @@ body {
 }
 .create_event:hover {
     background-color: darkslategray;
-}
-
-.event_info {
-    border: 1px solid gray;
-    border-radius: 20px;
-    padding: 10px;
-    margin-top: 30px;
-    width: auto;
 }
 
 .events {
@@ -126,4 +135,18 @@ body {
 
 .to_event_page:hover {
     background-color: darkslategray;
+}
+
+.back_to_index {
+    border: 1px solid black;
+    width:fit-content;
+    padding: 10px;
+    margin: 20px;
+    background: rgb(100, 100, 100);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+.back_to_index:hover {
+    background: rgb(40, 40, 40);
 }
