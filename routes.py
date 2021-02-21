@@ -197,6 +197,9 @@ def edit_event(id):
         if session["suspended"]:
             return "<h1>SUSPENDED ACCOUNT, NO ACCESS</h1>"
         event = events.get_event_by_id(id)
+        creator = users.get_username(event[2])
+        if session["username"] != creator and not session["is_admin"]:
+            return "No access"
         event_category = utils.get_category_name(event[3])
         event_county = utils.get_county_name(event[4])
         categories = utils.get_categories()
@@ -278,6 +281,10 @@ def edit_event(id):
 
 @app.route("/delete_event/<int:id>", methods=["GET", "POST"])
 def delete_event(id):
+    event = events.get_event_by_id(id)
+    creator = users.get_username(event[2])
+    if session["username"] != creator and not session["is_admin"]:
+        return "No access"
     image_id = events.get_image_id(id)
     events.delete_event(id)
     if (image_id):

@@ -8,7 +8,7 @@ Sovellus on harjoitustyö HY:n kurssille Tietokantasovellus.
 
 ### Sovelluksen nykyinen tilanne 
 
-Sovelluksen perustoiminnallisuudet ovat tehty. Merkittävät sovelluksen käyttöön kohdistuvat bugit on paikattu. CSS:ää lisätty kaikille sivuille. Tällä hetkellä bugeja ei ole tiedossani, joten jos testaat sovellusta ja löydät bugin, postaisitko issuen.
+Sovelluksen perustoiminnallisuudet ovat tehty. Merkittävät sovelluksen käyttöön kohdistuvat bugit on paikattu. CSS:ää lisätty kaikille sivuille. Tällä hetkellä bugeja ei ole tiedossani, joten jos testaat sovellusta ja löydät korjattavaa, postaisitko issuen.
 
 Pientä hiottavaa:
 - Kaavakkeiden tekstikenttien maksimipituudet
@@ -54,6 +54,7 @@ Ylläpitäjän tunnus ja salasana on admin. Ylläpitäjän työkalut löytyvät 
 * Heroku
 * HTML
 * CSS
+* JavaScript
 
 ## SQL-taulut
 * Users
