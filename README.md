@@ -11,10 +11,11 @@ Sovellus on harjoitustyö HY:n kurssille Tietokantasovellus.
 Sovelluksen perustoiminnallisuudet ovat tehty. Merkittävät sovelluksen käyttöön kohdistuvat bugit on paikattu. CSS:ää lisätty kaikille sivuille. Tällä hetkellä bugeja ei ole tiedossani, joten jos testaat sovellusta ja löydät korjattavaa, postaisitko issuen.
 
 Pientä hiottavaa:
-- Kaavakkeiden tekstikenttien maksimipituudet
+- Kaavakkeiden tekstikenttien maksimipituudet skaalautuvat huonosti etu- ja tapahtumasivulla
 - Rivinvaihdon huomiointi description-kentässä. Rivinvaihdot eivät näy tapahtumasivulla.
 - CSS ja HTML siistimistä
-- Muutama metodi on moduulissa epäjohdonmukaisesti
+- Muutama metodi on moduuleissaan epäjohdonmukaisesti
+- Poista ylimääräiset print-komennot koodista
  
  ### Testaus Herokussa
     

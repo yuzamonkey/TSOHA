@@ -8,7 +8,8 @@
 
         <p>* = pakollinen</p>
 
-        Tapahtuman nimi *<br><input type="text" name="event_name" required> <br>
+        Tapahtuman nimi *<br><input type="text" name="event_name" maxlength="50" required> <br>
+
 
         <label for="category">Kategoria *<br></label>
         <select name="category">
@@ -25,17 +26,17 @@
         <br>
         <input type="radio" value="paid" name="cost">
         <label for="paid">Maksullinen, </label>
-        Hinta <input type="text" name="price" size="12"> <br>
-
+        Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
+    
         <label for="county">Maakunta *<br></label>
         <select name="county" required>
             {% for county in counties %}
             <option>{{county}}
                 {% endfor %}
-        </select> <br>
-        Kaupunki *<br><input type="text" name="city" required> <br>
-        Paikka *<br><input type="text" name="locale" required> <br>
-        Osoite *<br><input type="text" name="address" required> <br>
+        </select> <br> 
+        Kaupunki *<br><input type="text" name="city" maxlength="35" required> <br>
+        Paikka *<br><input type="text" name="locale" maxlength="50" required> <br>
+        Osoite *<br><input type="text" name="address" maxlength="50" required> <br>
         Alkamisaika *<br><input type="datetime-local" name="starting_time" onblur="set_ending_time()" required> <br>
         Loppumisaika *<br><input type="datetime-local" name="ending_time" onblur="compare()" required> <br>
         <br>
