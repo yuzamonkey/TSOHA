@@ -8,9 +8,9 @@
             <h3>Raportit</h3>
                 {% for report in reports %}
                     {% if report[3] %}
-                        <p><b>{{report}}</b> <a href="/mark_as_read_report/{{report[0]}}">Merkitse luetuksi</a>
+                        <p><b>{{report[1]}}, {{report[2]}}</b> <a href="/mark_as_read_report/{{report[0]}}">Merkitse luetuksi</a>
                     {% else %}
-                        <p>{{report}} <a href="/delete_report/{{report[0]}}">Poista</a></p>
+                        <p>{{report[1]}}, {{report[2]}} <a href="/delete_report/{{report[0]}}">Poista</a></p>
                     {% endif %}
                 {% endfor %}
         </div>
@@ -24,7 +24,7 @@
         <div class="section careful">
             <h3>Tapahtumat</h3>
                 {% for event in events %}
-                <p>{{event.id}}, {{event.name}}, {{event.creator}}, {{event.starting_time}}
+                <p>id: {{event.id}}, {{event.name}}, {{event.creator}}, {{event.starting_time}}
                     <a href="/event/{{event.id}}">Näytä</a> 
                     <a href="/edit_event/{{event.id}}">Muokkaa</a>
                     <a href="/delete_event/{{event.id}}">Poista</a> </p>
@@ -34,7 +34,7 @@
         <div class="section careful">
             <h3>Jäädytä tai poista käyttäjä</h3>
                 {% for name in usernames %}
-                <p>{{name}} 
+                <p>id: {{name[0]}}, käyttäjänimi: <b>{{name[1]}}</b>, jäädytetty: {{name[2]}} 
                     {% if name[2] %}
                     <a href="/remove_suspension/{{name[0]}}">Palauta</a> 
                     {% else %}
