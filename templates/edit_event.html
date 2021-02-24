@@ -4,7 +4,7 @@
 <body>
     <h2>Muokkaa tapahtumaa <i>{{event[1]}}</i></h2>
 
-    <form action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data" class="form">
+    <form name="edit_event" action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data" class="form" onsubmit="return compare()">
 
         <p>* = pakollinen</p>
 
@@ -64,35 +64,37 @@
         <div class="submit_and_delete">
             <input id="submit-button" type="submit" value="Tallenna">
             <div class="delete_position">
-            <button onclick="confirm_window()" class="delete_button">Poista tapahtuma</button>
+            <button onclick="return confirm_deletion()" class="delete_button">Poista tapahtuma</button>
             </div>
         </div>
         
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
-</body>
-<a href="/user_info">Takaisin</a>
+    <a href="/user_info">Takaisin</a>
+  </body>
+
 
 
 <script>
-    function confirm_window() {
+    function confirm_deletion() {
         var del = confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
         if (del) {
             window.location.href = "/delete_event/{{event[0]}}";
+            return true
         }
+        return false
     }
-</script>
-
-<script>
     function compare() {
-        var starting_time = document.forms["create_event"]["starting_time"].value;
-        var ending_time = document.forms["create_event"]["ending_time"].value;
+        var starting_time = document.forms["edit_event"]["starting_time"].value;
+        var ending_time = document.forms["edit_event"]["ending_time"].value;
         if (!starting_time) {
-            document.forms["create_event"]["starting_time"].value = ending_time;
+            document.forms["edit_event"]["starting_time"].value = ending_time;
         }
         if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
             alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
-            document.forms["create_event"]["ending_time"].value = starting_time
+            document.forms["edit_event"]["ending_time"].value = starting_time
+            return false;
         } 
+        return true;
     }
 </script>
