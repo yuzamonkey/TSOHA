@@ -4,7 +4,6 @@
 
 body {
     margin: auto;
-    margin-bottom: 200px;
     width: auto;
 }
 
@@ -93,12 +92,13 @@ body {
 }
 
 .events {
-    margin: 5px;
     padding: 5px;
+    height: 65vh;
     display: flex;
     flex-wrap: wrap;
-    align-content:center;
+    align-content:flex-start;
     align-items: center;
+    overflow: scroll;
 }
 .event {
     border: 1px solid green;
@@ -106,6 +106,7 @@ body {
     height: 400px;
     margin: 30px;
     padding: 20px;
+    overflow: scroll;
 }
 .event_image {
     width: 200px;
