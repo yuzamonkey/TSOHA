@@ -7,7 +7,6 @@
         </div>
 
         <div class="links">
-
             {% if session.user_id %}
             <p>
                 <a href="/create_event" class="navbar_link create_event">Luo tapahtuma&emsp;</a>
@@ -35,7 +34,7 @@
             <h2>Tulevat tapahtumat</h2>
         </div>
         <div class="filters">
-            <form action="/" method="GET">
+            <form name="filters" action="/" method="GET">
                 <b>Suodata tuloksia:&emsp;</b>
                 <label for="category">Kategoria</label>
                 <input list="categories" name="category">
@@ -54,7 +53,7 @@
                 </datalist>
                 
                 <label for="date">&emsp;Päivämäärä</label>
-                <input type="date" name="date">
+                <input type="date" name="date" onblur="validate_time()">
 
                 &emsp;
                 <input type="submit" value="Suodata">
@@ -79,3 +78,16 @@
     </div>
 
 </body>
+
+
+<script>
+  function validate_time() {
+    var time = document.forms["filters"]["date"].value;
+    var split = time.split("-")
+    var year_length = split[0].length
+    if (year_length !== 4) {
+      alert("Anna kelvollinen päivämäärä")
+      document.forms["filters"]["date"].value = ""
+    }
+  }
+</script>

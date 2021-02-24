@@ -13,6 +13,7 @@ def index():
         category = request.args["category"]
         county = request.args["county"]
         date = request.args["date"]
+        print("DATE ", date)
         selected_events = utils.events_to_dictionaries(events.get_all_upcoming())
         if (category):
             selected_events = utils.filter_by_category(selected_events, category)

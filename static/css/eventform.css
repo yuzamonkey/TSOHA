@@ -76,5 +76,5 @@ form #submit-button:hover {
     text-decoration: none;
 }
 .back_to_index:hover {
-    background: darkslategray;
+    background: rgb(192, 214, 214);
 }
