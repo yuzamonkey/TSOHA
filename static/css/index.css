@@ -34,26 +34,15 @@ body {
     width: 65%;
     height: auto;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
 }
-.navbar_link {
+.navbar_link { 
     color:white;
     text-decoration: none;
 }
-/* unvisited link
-.navbar_link:link {
-    color:aqua;
-}
-/*visited link
-.navbar_link:link {
-    color:red;
-} 
-*/
-/* mouse over link */
 .navbar_link:hover {
     color: lightgray;
 }
-/* selected link */
 .navbar_link:active {
     color: darkgray;
 }
@@ -61,12 +50,10 @@ body {
 .create_event {
     margin: auto;
     color:white;
-    text-decoration: none;
     background-color: darkslategray;
     border-radius: 5px;
     padding: 10px;
-    padding-right: 0;
-    margin-right: 5px;
+    margin-right: 5px; 
 }
 .create_event:hover {
     background-color: darkslategray;
@@ -89,19 +76,21 @@ body {
 }
 
 .events {
-    margin: 5px;
-    padding: 5px;
+    border-top: solid 1px lightgray;
+    height: 75vh;
     display: flex;
     flex-wrap: wrap;
-    align-content:center;
+    align-content:flex-start;
     align-items: center;
+    overflow: scroll;
 }
 .event {
-    border: 1px solid green;
+    border: 1px solid darkgreen;
     width: 200px;
     height: 400px;
-    margin: 30px;
+    margin: 20px;
     padding: 20px;
+    overflow: scroll;
 }
 .event_image {
     width: 200px;
