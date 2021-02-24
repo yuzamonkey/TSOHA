@@ -64,7 +64,7 @@
         <div class="submit_and_delete">
             <input id="submit-button" type="submit" value="Tallenna">
             <div class="delete_position">
-            <button onclick="return confirm_deletion()" class="delete_button">Poista tapahtuma</button>
+            <a href="/delete_event/{{event.id}}" class="delete" onclick="return confirm_deletion()">Poista tapahtuma</a>
             </div>
         </div>
         
@@ -77,12 +77,7 @@
 
 <script>
     function confirm_deletion() {
-        var del = confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
-        if (del) {
-            window.location.href = "/delete_event/{{event[0]}}";
-            return true
-        }
-        return false
+        return confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
     }
     function compare() {
         var starting_time = document.forms["edit_event"]["starting_time"].value;

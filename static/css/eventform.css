@@ -38,15 +38,18 @@ h2 {
     justify-content: flex-end;
 }
 
-.delete_button {
+.delete {
     color: white;
-    background-color: rgb(230, 0, 0);
-    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    width: 120px;
+    background-color: rgb(200, 0, 0);
+    padding: 5px;
     border: 1px solid black;
     border-radius: 5px;
 }
 
-.delete_button:hover {
+.delete:hover {
     background-color: darkred;
 }
 
@@ -62,7 +65,6 @@ form #submit-button {
 }
 form #submit-button:hover {
     background: darkslategray;
-    color: white;
 }
 
 .back_to_index {
