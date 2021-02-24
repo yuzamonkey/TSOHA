@@ -1,72 +1,90 @@
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/eventform.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/eventform.css') }}">
 
 <body>
 
-    <h2>Luo tapahtuma</h2>
+  <h2>Luo tapahtuma</h2>
 
-    <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" class="form">
+  <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" class="form" onsubmit="return compare()">
 
-        <p>* = pakollinen</p>
+    <p>* = pakollinen</p>
 
-        Tapahtuman nimi *<br><input type="text" name="event_name" maxlength="50" required> <br>
+    Tapahtuman nimi *<br><input type="text" name="event_name" maxlength="50" required> <br>
 
 
-        <label for="category">Kategoria *<br></label>
-        <select name="category">
-            {% for category in categories %}
-            <option>{{category}}
-                {% endfor %}
-        </select> <br>
+    <label for="category">Kategoria *<br></label>
+    <select name="category">
+      {% for category in categories %}
+      <option>{{category}}
+        {% endfor %}
+    </select> <br>
 
-        <label for="description">Kuvaus *<br></label>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+    <label for="description">Kuvaus *<br></label>
+    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
 
-        <input type="radio" value="free" name="cost" checked="checked">
-        <label for="free">Ilmainen</label>
-        <br>
-        <input type="radio" value="paid" name="cost">
-        <label for="paid">Maksullinen, </label>
-        Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
-    
-        <label for="county">Maakunta *<br></label>
-        <select name="county" required>
-            {% for county in counties %}
-            <option>{{county}}
-                {% endfor %}
-        </select> <br> 
-        Kaupunki *<br><input type="text" name="city" maxlength="35" required> <br>
-        Paikka *<br><input type="text" name="locale" maxlength="50" required> <br>
-        Osoite *<br><input type="text" name="address" maxlength="50" required> <br>
-        Alkamisaika *<br><input type="datetime-local" name="starting_time" onblur="set_ending_time()" required> <br>
-        Loppumisaika *<br><input type="datetime-local" name="ending_time" onblur="compare()" required> <br>
-        <br>
-        Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>
-        <input type="file" name="image" accept=".jpg, .jpeg, .png">
-        <br><br>
-        <input id="submit-button" type="submit" value="Lähetä">
+    <input type="radio" value="free" name="cost" checked="checked">
+    <label for="free">Ilmainen</label>
+    <br>
+    <input type="radio" value="paid" name="cost">
+    <label for="paid">Maksullinen, </label>
+    Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
 
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <label for="county">Maakunta *<br></label>
+    <select name="county" required>
+      {% for county in counties %}
+      <option>{{county}}
+        {% endfor %}
+    </select> <br>
+    Kaupunki *<br><input type="text" name="city" maxlength="35" required> <br>
+    Paikka *<br><input type="text" name="locale" maxlength="50" required> <br>
+    Osoite *<br><input type="text" name="address" maxlength="50" required> <br>
+    Alkamisaika *<br><input type="datetime-local" name="starting_time" onblur="set_ending_time()" required> <br>
+    Loppumisaika *<br><input type="datetime-local" name="ending_time" onblur="compare()" required> <br>
+    <br>
+    Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>
+    <input type="file" name="image" accept=".jpg, .jpeg, .png">
+    <br><br>
+    <input id="submit-button" type="submit" value="Lähetä">
 
-        <br><br>
-        
-    </form>
-    <a class="back_to_index" href="/">Etusivulle</a>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+    <br><br>
+
+  </form>
+  <a class="back_to_index" href="/">Etusivulle</a>
 </body>
 <script>
-    function set_ending_time() {
-        var starting_time = document.forms["create_event"]["starting_time"].value;
-        document.forms["create_event"]["ending_time"].value = starting_time
+  function validate(time) {
+    console.log("Validate called")
+    var split = time.split("-")
+    var year_length = split[0].length
+    if (year_length !== 4) {
+      alert("Anna kelvollinen päivämäärä")
+      return false;
     }
-    function compare() {
-        var starting_time = document.forms["create_event"]["starting_time"].value;
-        var ending_time = document.forms["create_event"]["ending_time"].value;
-        if (!starting_time) {
-            document.forms["create_event"]["starting_time"].value = ending_time;
-        }
-        if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
-            alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
-            document.forms["create_event"]["ending_time"].value = starting_time
-        } 
+    return true;
+  }
+  function set_ending_time() {
+    var starting_time = document.forms["create_event"]["starting_time"].value;
+    if (!validate(starting_time)) {
+      document.forms["create_event"]["starting_time"].value = ""
+      document.forms["create_event"]["ending_time"].value = ""
+    } else {
+      document.forms["create_event"]["ending_time"].value = starting_time
     }
-</script>
+  }
 
+  function compare() {
+    var starting_time = document.forms["create_event"]["starting_time"].value;
+    var ending_time = document.forms["create_event"]["ending_time"].value;
+    if (!starting_time) {
+      document.forms["create_event"]["starting_time"].value = ending_time;
+    }
+    if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
+      alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
+      document.forms["create_event"]["ending_time"].value = starting_time
+      return false;
+    }
+    return true;
+  }
+
+</script>
