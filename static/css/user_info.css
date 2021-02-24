@@ -75,10 +75,16 @@ body {
 .event_info {
     border: 1px solid gray;
     border-radius: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
     margin: 10px;
     width: auto;
 }
+
+.create_event_container {
+  padding: 10px 20px;
+  margin-bottom: 10px
+}
+
 .create_event {
     margin: 40px;
     color:white;
@@ -92,7 +98,6 @@ body {
 }
 
 .events {
-    padding: 5px;
     height: 65vh;
     display: flex;
     flex-wrap: wrap;
@@ -101,10 +106,11 @@ body {
     overflow: scroll;
 }
 .event {
-    border: 1px solid green;
+    border: 1px solid darkgreen;
     width: 200px;
     height: 400px;
     margin: 30px;
+    margin-top: 10px;
     padding: 20px;
     overflow: scroll;
 }
