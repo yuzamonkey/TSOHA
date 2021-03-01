@@ -80,7 +80,7 @@ body {
     height: 75vh;
     display: flex;
     flex-wrap: wrap;
-    align-content:flex-start;
+    align-content: flex-start;
     align-items: center;
     overflow: scroll;
 }
