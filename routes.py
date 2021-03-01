@@ -123,13 +123,12 @@ def report():
         return render_template("report.html", message="Kiitos viestistäsi")
 
 # events
-
-
 @app.route("/event/<int:id>")
 def event(id):
     event = utils.event_to_dictionary(events.get_event_by_id(id))
+    description_split = event["description"].splitlines()
     image_id = event["image_id"]
-    return render_template("event.html", event=event, image_id=image_id)
+    return render_template("event.html", event=event, image_id=image_id, description_split=description_split)
 
 
 @app.route("/event_image/<int:id>")
@@ -155,8 +154,7 @@ def create_event():
         event_name = request.form["event_name"]
         category_id = utils.get_category_id(request.form["category"])
         description = request.form["description"]
-
-        #
+        print("DESCRIPTION", description)
         cost = request.form["cost"]
         if (cost == "free"):
             price = "Ilmainen"
@@ -164,8 +162,6 @@ def create_event():
             price = request.form["price"]
             if not "€" in price:
                 price = price + "€"
-                print("EI EUROMERKKIÄ, HINTA NYT ", price)
-        #
         county_id = utils.get_county_id(request.form["county"])
         city = request.form["city"]
         locale = request.form["locale"]
@@ -240,7 +236,6 @@ def edit_event(id):
         event_name = request.form["event_name"]
         category_id = utils.get_category_id(request.form["category"])
         description = request.form["description"]
-        #
         cost = request.form["cost"]
         if (cost == "free"):
             price = "Ilmainen"
@@ -248,8 +243,6 @@ def edit_event(id):
             price = request.form["price"]
             if not "€" in price:
                 price = price + "€"
-                print("EI EUROMERKKIÄ, HINTA NYT ", price)
-        #
         county_id = utils.get_county_id(request.form["county"])
         city = request.form["city"]
         locale = request.form["locale"]

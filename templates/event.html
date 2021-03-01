@@ -13,7 +13,6 @@
         <p>Alkaa: {{event["starting_time"]}}</p>
         <p>Päättyy: {{event["ending_time"]}}</p>
         <p>Hinta: {{event["price"]}}</p>
-
       </div>
       <a href="/" class="back_to_index">Etusivulle</a>
     </div>
@@ -22,7 +21,9 @@
         <h2>{{event["name"]}}</h2>
       </div>
       <div class="description">
-        {{event["description"]}}
+        {% for split in description_split %}
+          <p>{{split}}</p>
+        {% endfor %}
       </div>
     </div>
 

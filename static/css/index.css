@@ -3,7 +3,6 @@
 }
 
 body {
-    /* border: 3px solid red; */
     margin: auto;
     width: auto;
 }
@@ -19,7 +18,6 @@ body {
 
 }
 .title {
-    /* border: 1px solid greenyellow;  */
     margin:auto;
     width: 30%;
     height: auto;
@@ -29,7 +27,6 @@ body {
     align-items:center;
 }
 .links {
-    /* border: 1px solid yellow;  */
     margin: auto;
     width: 65%;
     height: auto;
