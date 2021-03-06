@@ -19,7 +19,7 @@ def get_event_by_id(id):
     return event
 
 def get_events_by_user_id(user_id):
-    sql = "SELECT * FROM Events WHERE user_id=:user_id"
+    sql = "SELECT * FROM Events WHERE user_id=:user_id ORDER BY Starting_time"
     events = db.session.execute(sql, {"user_id":user_id}).fetchall()
     return events
 

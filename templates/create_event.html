@@ -1,10 +1,12 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/eventform.css') }}">
 
 <body>
+  <div class="navbar">
+    <a class="back_to_index" href="/">Etusivulle</a>
+    <h2>Luo tapahtuma</h2>
+  </div>
 
-  <h2>Luo tapahtuma</h2>
-
-  <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" class="form" onsubmit="return compare()">
+  <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" onsubmit="return compare()">
 
     <p>* = pakollinen</p>
 
@@ -19,7 +21,7 @@
     </select> <br>
 
     <label for="description">Kuvaus *<br></label>
-    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+    <textarea id="description" name="description" rows="10" cols="70" required></textarea><br>
 
     <input type="radio" value="free" name="cost" checked="checked">
     <label for="free">Ilmainen</label>
@@ -50,7 +52,7 @@
     <br><br>
 
   </form>
-  <a class="back_to_index" href="/">Etusivulle</a>
+
 </body>
 <script>
   function validate(time) {

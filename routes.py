@@ -30,8 +30,6 @@ def index():
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
 
 # users
-
-
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "GET":
@@ -123,6 +121,8 @@ def report():
         return render_template("report.html", message="Kiitos viestistäsi")
 
 # events
+
+
 @app.route("/event/<int:id>")
 def event(id):
     event = utils.event_to_dictionary(events.get_event_by_id(id))

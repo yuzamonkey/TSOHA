@@ -4,12 +4,11 @@
 
 body {
   margin: auto;
-  margin-bottom: 200px;
   width: 800px;
 }
 
 .content {
-  margin: 20px;
+  margin: 50px 20px 20px 20px;
   padding: 20px;
   line-height: 1.7em;
   border: 1px solid gray;
@@ -34,16 +33,16 @@ form #submit-button:hover {
 }
 
 .back_to_index {
-  border: 1px solid black;
+  border: 1px solid rgb(50, 100, 100);
   width: fit-content;
+  color: black;
   padding: 10px;
   margin-left: 20px;
-  background: rgb(100, 100, 100);
   border-radius: 5px;
-  color: white;
   text-decoration: none;
 }
 
 .back_to_index:hover {
-  background: darkslategray;
+  background: rgb(50, 100, 100);
+  color: white;
 }

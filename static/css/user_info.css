@@ -9,11 +9,11 @@ body {
 }
 
 .navbar {
-  border: 1px solid red;
-  height: 50px;
-  background-color: rgb(50, 100, 100);
   border: 10px solid darkslategrey;
   border-bottom: 0px;
+  background-color: rgb(50, 100, 100);
+  width: auto;
+  height: 50px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -32,31 +32,46 @@ body {
   background: darkslategray;
 }
 
+.navbar_left {
+  display: flex;
+  width: 10%;
+}
+
 .title {
   padding: 10px;
   color: white;
   margin: 0;
 }
 
-.logout {
+.links {
   margin: auto;
-  width: 75%;
+  width: 87.5%;
+  height: auto;
   display: flex;
   justify-content: flex-end;
-  
 }
 
-#logout {
+.navbar_link {
   color: white;
   text-decoration: none;
-  background-color: rgb(50,100,100);
+}
+
+.navbar_link:hover {
+  color: lightgray;
+}
+
+.create_event {
+  margin: auto;
+  background-color: darkslategray;
+  border: 1px solid darkslategray;
   border-radius: 5px;
   padding: 10px;
   margin-right: 5px;
 }
 
-#logout:hover {
-  color: lightgray;
+.create_event:hover {
+  background-color: rgb(50, 100, 100);
+  color: white;
 }
 
 .user_information {
@@ -72,7 +87,6 @@ body {
 }
 
 .username_and_password {
-  /* border: 1px solid black; */
   width: 80%;
   display: flex;
   justify-content: flex-start;
@@ -112,39 +126,20 @@ body {
 }
 
 .events_title {
-  margin: 10px 0px 0px 40px;
+  margin: 25px 0px 10px 20px;
 }
 
 .event_info {
   border: 1px solid gray;
   border-radius: 20px;
-  padding-top: 20px;
   margin: 10px;
   width: auto;
-  height: 77vh;
+  height: 84vh;
   overflow: hidden;
 }
 
-.create_event_container {
-  padding: 10px 20px;
-  margin-bottom: 10px
-}
-
-.create_event {
-  margin: 40px;
-  color: white;
-  text-decoration: none;
-  background-color: rgb(50, 100, 100);
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-
-.create_event:hover {
-  background-color: darkslategray;
-}
-
 .events {
-  height:95%;
+  height: 90%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -156,8 +151,7 @@ body {
   border: 1px solid darkgreen;
   width: 200px;
   height: 400px;
-  margin: 30px;
-  margin-top: 10px;
+  margin: 20px;
   padding: 20px;
   overflow: scroll;
 }

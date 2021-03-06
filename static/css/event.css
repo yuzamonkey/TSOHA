@@ -5,7 +5,7 @@
 body {
   /* border: 3px solid red; */
   margin: auto;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
   width: 800px;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .info {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .info_and_back_to_index {
@@ -43,16 +43,17 @@ body {
 }
 
 .back_to_index {
-  color: white;
+  color:black;
   text-decoration: none;
   width: fit-content;
   padding: 10px;
-  background: rgb(0, 100, 100);
+  border: 1px solid rgb(50,100,100);
   border-radius: 5px;
 }
 
 .back_to_index:hover {
-  background: darkslategray;
+  background: rgb(50,100,100);
+  color: white;
 }
 
 .link {

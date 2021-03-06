@@ -1,95 +1,98 @@
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/eventform.css') }}">
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/eventform.css') }}">
 
 <body>
+  <div class="navbar">
+    <a href="/user_info" class="back_to_index">Takaisin</a>
     <h2>Muokkaa tapahtumaa <i>{{event[1]}}</i></h2>
+  </div>
 
-    <form name="edit_event" action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data" class="form" onsubmit="return compare()">
+  <form name="edit_event" action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data" class="form"
+    onsubmit="return compare()">
 
-        <p>* = pakollinen</p>
+    <p>* = pakollinen</p>
 
-        Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}" maxlength="50" required> <br>
+    Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}" maxlength="50" required> <br>
 
-        <label for="category">Kategoria *<br></label>
-        <select name="category">
-            {% for category in categories %}
-            {% if category == event_category %}
-            <option selected>{{category}}
-                {% else %}
-            <option>{{category}}
-                {% endif %}
-                {% endfor %}
-        </select> <br>
-
-        <label for="description">Kuvaus *<br></label>
-        <textarea id="description" name="description" rows="4" cols="50" required>{{event[8]}}</textarea><br>
-    
-        {% if event[11] == "Ilmainen" %}
-            <input type="radio" value="free" name="cost" checked="checked">
-            <label for="free">Ilmainen</label>
-            <br>
-            <input type="radio" value="paid" name="cost">
-            <label for="paid">Maksullinen,  </label>
-            Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
+    <label for="category">Kategoria *<br></label>
+    <select name="category">
+      {% for category in categories %}
+      {% if category == event_category %}
+      <option selected>{{category}}
         {% else %}
-            <input type="radio" value="free" name="cost">
-            <label for="free">Ilmainen</label>
-            <br>
-            <input type="radio" value="paid" name="cost" checked="checked">
-            <label for="paid">Maksullinen,  </label>
-            Hinta <input type="text" name="price" size="12" maxlength="10" value="{{event[11]}}"> <br>
+      <option>{{category}}
         {% endif %}
+        {% endfor %}
+    </select> <br>
 
+    <label for="description">Kuvaus *<br></label>
+    <textarea id="description" name="description" rows="10" cols="70" required>{{event[8]}}</textarea><br>
 
+    {% if event[11] == "Ilmainen" %}
+    <input type="radio" value="free" name="cost" checked="checked">
+    <label for="free">Ilmainen</label>
+    <br>
+    <input type="radio" value="paid" name="cost">
+    <label for="paid">Maksullinen, </label>
+    Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
+    {% else %}
+    <input type="radio" value="free" name="cost">
+    <label for="free">Ilmainen</label>
+    <br>
+    <input type="radio" value="paid" name="cost" checked="checked">
+    <label for="paid">Maksullinen, </label>
+    Hinta <input type="text" name="price" size="12" maxlength="10" value="{{event[11]}}"> <br>
+    {% endif %}
 
-        <label for="county">Maakunta *<br></label>
-        <select name="county">
-            {% for county in counties %}
-            {% if county == event_county %}
-            <option selected>{{county}}
-                {% else %}
-            <option>{{county}}
-                {% endif %}
-                {% endfor %}
-        </select> <br>
-        Kaupunki *<br><input type="text" name="city" maxlength="35" value="{{event[6]}}" required> <br>
-        Paikka *<br><input type="text" name="locale" maxlength="50" value="{{event[5]}}" required> <br>
-        Osoite *<br><input type="text" name="address" maxlength="50" value="{{event[7]}}" required> <br>
-        Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}" required> <br>
-        Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" onblur="compare()" required> <br>
-        <br>
-        Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>Aiemmin laitettu kuvatiedosto säilyy<br>
-        <input type="file" name="image" accept=".jpg, .jpeg, .png">
-        <br><br>
-        <div class="submit_and_delete">
-            <input id="submit-button" type="submit" value="Tallenna">
-            <div class="delete_position">
-            <a href="/delete_event/{{event.id}}" class="delete" onclick="return confirm_deletion()">Poista tapahtuma</a>
-            </div>
-        </div>
-        
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
-    <a href="/user_info">Takaisin</a>
-  </body>
+    <label for="county">Maakunta *<br></label>
+    <select name="county">
+      {% for county in counties %}
+      {% if county == event_county %}
+      <option selected>{{county}}
+        {% else %}
+      <option>{{county}}
+        {% endif %}
+        {% endfor %}
+    </select> <br>
+    Kaupunki *<br><input type="text" name="city" maxlength="35" value="{{event[6]}}" required> <br>
+    Paikka *<br><input type="text" name="locale" maxlength="50" value="{{event[5]}}" required> <br>
+    Osoite *<br><input type="text" name="address" maxlength="50" value="{{event[7]}}" required> <br>
+    Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}" required> <br>
+    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" onblur="compare()"
+      required> <br>
+    <br>
+    Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>Aiemmin laitettu kuvatiedosto säilyy<br>
+    <input type="file" name="image" accept=".jpg, .jpeg, .png">
+    <br><br>
+    <div class="submit_and_delete">
+      <div class="submit_position">
+        <input id="submit-button" type="submit" value="Tallenna">
+      </div>
+      <div class="delete_position">
+        <a href="/delete_event/{{event.id}}" class="delete" onclick="return confirm_deletion()">Poista tapahtuma</a>
+      </div>
+    </div>
+
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+  </form>
+</body>
 
 
 
 <script>
-    function confirm_deletion() {
-        return confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
+  function confirm_deletion() {
+    return confirm("Haluatko poistaa tapahtuman {{event[1]}}?");
+  }
+  function compare() {
+    var starting_time = document.forms["edit_event"]["starting_time"].value;
+    var ending_time = document.forms["edit_event"]["ending_time"].value;
+    if (!starting_time) {
+      document.forms["edit_event"]["starting_time"].value = ending_time;
     }
-    function compare() {
-        var starting_time = document.forms["edit_event"]["starting_time"].value;
-        var ending_time = document.forms["edit_event"]["ending_time"].value;
-        if (!starting_time) {
-            document.forms["edit_event"]["starting_time"].value = ending_time;
-        }
-        if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
-            alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
-            document.forms["edit_event"]["ending_time"].value = starting_time
-            return false;
-        } 
-        return true;
+    if ((new Date(starting_time).getTime() >= new Date(ending_time).getTime())) {
+      alert("Tarkista, että loppumisaika on alkamisajan jälkeen")
+      document.forms["edit_event"]["ending_time"].value = starting_time
+      return false;
     }
+    return true;
+  }
 </script>

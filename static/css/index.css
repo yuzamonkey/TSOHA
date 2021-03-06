@@ -79,7 +79,7 @@ body {
 
 .events {
   border-top: solid 1px lightgray;
-  height: 80%;
+  height: 85%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
