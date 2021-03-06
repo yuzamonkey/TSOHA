@@ -4,7 +4,6 @@
 
 body {
   margin: auto;
-  margin-bottom: 100px;
 }
 
 .navbar {
@@ -20,7 +19,7 @@ body {
 .back_to_index {
   display: flex;
   align-items: center;
-  border-right: 3px solid darkslategray;
+  border-right: 1px solid darkslategray;
   width: fit-content;
   height: 50px;
   padding: 10px;
@@ -39,9 +38,11 @@ h2 {
 
 form {
   margin: auto;
+  width: 60%;
+  height: calc(100vh - 130px);
+  overflow: scroll;
   border: 1px solid grey;
   border-radius: 20px;
-  width: 60%;
   line-height: 1.7em;
   padding: 5px 50px 30px 50px;
 }
