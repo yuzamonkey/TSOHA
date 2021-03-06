@@ -63,9 +63,9 @@ body {
 
 .content {
   border: 1px solid gray;
+  height: calc(100vh - 95px);
   border-radius: 20px;
   margin: 10px;
-  height: 90vh;
   overflow: hidden;
 }
 
@@ -79,7 +79,7 @@ body {
 
 .events {
   border-top: solid 1px lightgray;
-  height: 81vh;
+  height: calc(100vh - 205px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
