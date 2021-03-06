@@ -1,82 +1,84 @@
 * {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
-    margin: auto;
-    margin-bottom: 200px;
-    width: 800px;
+  margin: auto;
+  margin-bottom: 200px;
+  width: 800px;
 }
 
 h2 {
-    padding: 10px;
-    color: white;
-    border: 10px solid darkslategrey;
-    background-color: rgb(50,100,100);
+  padding: 10px;
+  color: white;
+  border: 10px solid darkslategrey;
+  background-color: rgb(50, 100, 100);
 }
 
 .form {
-    line-height: 1.7em;
-    border: 1px solid grey;
-    border-radius: 20px;
-    padding: 50px;
-    padding-top: 5px;
-    width: auto;
+  line-height: 1.7em;
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 50px;
+  padding-top: 5px;
+  width: auto;
 }
 
 .submit_and_delete {
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
 
 .delete_position {
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .delete {
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    width: 120px;
-    background-color: rgb(200, 0, 0);
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  width: 120px;
+  background-color: rgb(200, 0, 0);
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .delete:hover {
-    background-color: darkred;
+  background-color: darkred;
 }
 
 form #submit-button {
-    border: none;
-    text-align: center;
-    width: 120px;
-    height: 40px;
-    background: rgb(50, 100, 100);
-    color: white;
-    border-radius: 5px;
-    font-size: large;
+  border: none;
+  text-align: center;
+  width: 120px;
+  height: 40px;
+  background: rgb(50, 100, 100);
+  color: white;
+  border-radius: 5px;
+  font-size: large;
 }
+
 form #submit-button:hover {
-    background: darkslategray;
+  background: darkslategray;
 }
 
 .back_to_index {
-    border:1px solid black;
-    width:fit-content;
-    padding: 10px;
-    margin-left: 20px;
-    background: rgb(0, 100, 100);
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 10px;
+  margin-left: 20px;
+  background: rgb(0, 100, 100);
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
 }
+
 .back_to_index:hover {
-    background: rgb(192, 214, 214);
+  background: rgb(192, 214, 214);
 }

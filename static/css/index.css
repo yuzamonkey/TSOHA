@@ -1,102 +1,107 @@
 * {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 body {
-    margin: auto;
-    width: auto;
+  margin: auto;
+  width: auto;
+  min-width: 850px;
 }
-.navbar {
-    border: 10px solid darkslategrey;
-    background-color: rgb(50,100,100);
-    width: auto;
-    height: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
 
+.navbar {
+  border: 10px solid darkslategrey;
+  background-color: rgb(50, 100, 100);
+  width: auto;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
+
 .title {
-    margin:auto;
-    width: 30%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-content:center;
-    align-items:center;
+  margin: auto;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
+
 .links {
-    margin: auto;
-    width: 65%;
-    height: auto;
-    display: flex;
-    justify-content: flex-end;
+  margin: auto;
+  width: 65%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
 }
-.navbar_link { 
-    color:white;
-    text-decoration: none;
+
+.navbar_link {
+  color: white;
+  text-decoration: none;
 }
+
 .navbar_link:hover {
-    color: lightgray;
-}
-.navbar_link:active {
-    color: darkgray;
+  color: lightgray;
 }
 
 .create_event {
-    margin: auto;
-    color:white;
-    background-color: darkslategray;
-    border-radius: 5px;
-    padding: 10px;
-    margin-right: 5px; 
+  margin: auto;
+  color: white;
+  background-color: darkslategray;
+  border: 1px solid darkslategray;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 5px;
 }
+
 .create_event:hover {
-    background-color: darkslategray;
+  background-color: rgb(50, 100, 100);
+  color: white;
 }
 
 .content {
-    border: 1px solid gray;
-    border-radius: 20px;
-    margin: 10px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin: 10px;
+  height: 90vh;
+  overflow: hidden;
 }
 
 .upcoming_title {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .filters {
-    width: auto;
-    padding: 10px;
-    padding-top: 0px;
+  padding-left: 10px;
 }
 
 .events {
-    border-top: solid 1px lightgray;
-    height: 75vh;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    align-items: center;
-    overflow: scroll;
+  border-top: solid 1px lightgray;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  overflow: scroll;
 }
+
 .event {
-    border: 1px solid darkgreen;
-    width: 200px;
-    height: 400px;
-    margin: 20px;
-    padding: 20px;
-    overflow: scroll;
+  border: 1px solid darkgreen;
+  width: 200px;
+  height: 400px;
+  margin: 20px;
+  padding: 20px;
+  overflow: scroll;
 }
+
 .event_image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .event:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
-
-

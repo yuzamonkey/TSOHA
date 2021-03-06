@@ -1,49 +1,55 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/user_info.css') }}">
 
 <body>
-    <h2 class="title"><i>{{username}}</i></h2> 
-    <div class="user_information">    
-        <div class="username_and_password">Käyttäjätunnus: {{username}} &emsp;<a href="/edit_username" class="edit_username_or_password">Vaihda käyttäjätunnus</a>
-            &emsp; Salasana: ***** &emsp;<a href="/edit_password" class="edit_username_or_password">Vaihda salasana</a></div>
-            <div class="delete"><button onclick="confirm_window()" class="delete_button">Poista käyttäjä</button></div>
-            {% if session.is_admin %}
-                <a href="/admin_page">admin työkalut</a>
-            {% endif %}
-    <br>
-        </div>
-    
-    <h2 class="events_title">Tapahtumasi</h2>
-    <div class="event_info">
-      <div class="create_event_container">
-        <a href="create_event" class="create_event">Luo tapahtuma</a>
-      </div>
-        <div class="events">
-            {% for event in users_events %}
-                <div class="event">
-                    {% if event["image_id"] %}
-                        <img src="/event_image/{{event.image_id}}" class="event_image">
-                    {% endif %}
-                    <p><b>{{event["name"]}}</b></p>
-                    <a href="/edit_event/{{event.id}}" class="edit_link">Muokkaa</a>
-                    <a href="/event/{{event.id}}" class="to_event_page">Tapahtumasivulle</a>
-                    <p> {{event["address"]}}, {{event["city"]}}, {{event["county"]}}</p>
-                    <p> {{event["starting_time"]}}</p>
-                    <p> {{event["price"]}}</p>
-                    
-                    </p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <br>
+  <div class="navbar">
     <a class="back_to_index" href="/">Etusivulle</a>
+    <h2 class="title"><i>{{username}}</i></h2>
+    <div class="logout">
+    <a href="/log_out" id="logout">Kirjaudu ulos</a>
+    </div>
+
+  </div>
+  <div class="user_information">
+    <div class="username_and_password">Käyttäjätunnus: {{username}} &emsp;<a href="/edit_username"
+        class="edit_username_or_password">Vaihda käyttäjätunnus</a>
+      &emsp; Salasana: ***** &emsp;<a href="/edit_password" class="edit_username_or_password">Vaihda salasana</a></div>
+    <div class="delete"><button onclick="confirm_window()" class="delete_button">Poista käyttäjä</button></div>
+    {% if session.is_admin %}
+    <a href="/admin_page">admin työkalut</a>
+    {% endif %}
+    <br>
+  </div>
+
+  <h2 class="events_title">Tapahtumasi</h2>
+  <div class="event_info">
+    <div class="create_event_container">
+      <a href="create_event" class="create_event">Luo tapahtuma</a>
+    </div>
+    <div class="events">
+      {% for event in users_events %}
+      <div class="event">
+        {% if event["image_id"] %}
+        <img src="/event_image/{{event.image_id}}" class="event_image">
+        {% endif %}
+        <p><b>{{event["name"]}}</b></p>
+        <a href="/edit_event/{{event.id}}" class="edit_link">Muokkaa</a>
+        <a href="/event/{{event.id}}" class="to_event_page">Tapahtumasivulle</a>
+        <p> {{event["address"]}}, {{event["city"]}}, {{event["county"]}}</p>
+        <p> {{event["starting_time"]}}</p>
+        <p> {{event["price"]}}</p>
+
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </body>
 
 <script>
-    function confirm_window() {
-        var del = confirm("Käyttäjän poistaminen poistaa myös tekemäsi tapahtumat. Haluatko poistaa käyttäjän {{username}}?");
-        if (del) {
-            window.location.href = "/delete_user/{{user_id}}";
-        }
+  function confirm_window() {
+    var del = confirm("Käyttäjän poistaminen poistaa myös tekemäsi tapahtumat. Haluatko poistaa käyttäjän {{username}}?");
+    if (del) {
+      window.location.href = "/delete_user/{{user_id}}";
     }
+  }
 </script>

@@ -26,7 +26,7 @@
   <p>&emsp;Hellurei, {{session.username}}</p>
   {% endif %}
   {% if session.suspended %}
-  <p><b>SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
+  <p><b>&emsp;SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
   {% endif %}
 
   <div class="content">
@@ -54,12 +54,14 @@
 
         <label for="date">&emsp;Päivämäärä</label>
         <input type="date" name="date" onblur="validate_time()">
-
         &emsp;
         <input type="submit" value="Suodata">
       </form>
     </div>
     <div class="events">
+      {% if not events %}
+      <h2>&emsp;Ei tapahtumia</h2>
+      {% endif %}
       {% for event in events %}
       <div class="event" onclick="location.href='/event/{{event.id}}';">
         {% if event["image_id"] %}
