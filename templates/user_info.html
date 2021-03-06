@@ -13,17 +13,20 @@
         <a href="/log_out" class="navbar_link">Kirjaudu ulos</a>
       </p>
     </div>
-
   </div>
+
   <div class="user_information">
     <div class="username_and_password">Käyttäjätunnus: {{username}} &emsp;<a href="/edit_username"
         class="edit_username_or_password">Vaihda käyttäjätunnus</a>
-      &emsp; Salasana: ***** &emsp;<a href="/edit_password" class="edit_username_or_password">Vaihda salasana</a></div>
-    <div class="delete"><button onclick="confirm_window()" class="delete_button">Poista käyttäjä</button></div>
+      &emsp; Salasana: ***** &emsp;<a href="/edit_password" class="edit_username_or_password">Vaihda salasana</a>
+      <div class="delete"><button onclick="confirm_window()" class="delete_button">Poista käyttäjä</button></div>
+    </div>
     {% if session.is_admin %}
-    <a href="/admin_page">admin työkalut</a>
+    <div class="admin_page">
+      <a href="/admin_page" id="admin_page">admin työkalut</a>
+    </div>
     {% endif %}
-    <br>
+  
   </div>
 
   <div class="event_info">

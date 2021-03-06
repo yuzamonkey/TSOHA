@@ -107,9 +107,9 @@ body {
 }
 
 .delete {
-  width: 15%;
+  margin-left: 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .delete_button {
@@ -122,6 +122,24 @@ body {
 
 .delete_button:hover {
   background-color: darkred;
+}
+
+.admin_page {
+  display: flex;
+  width: 18%;
+  justify-content: flex-end;
+}
+
+#admin_page {
+  text-decoration: none;
+  color: white;
+  padding: 8px;
+  background-color: rgb(100,100,100);
+  border-radius: 5px;
+}
+
+#admin_page:hover {
+  background-color: black;
 }
 
 .events_title {
