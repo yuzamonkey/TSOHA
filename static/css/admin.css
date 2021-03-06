@@ -4,16 +4,35 @@
 
 body {
   margin: auto;
-  margin-bottom: 200px;
   width: auto;
 }
 
-.title {
-  padding: 10px;
-  color: white;
+.navbar {
   border: 10px solid rgb(48, 0, 0);
   background-color: rgb(90, 0, 0);
-  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0px 10px 0px 10px;
+  background: rgb(90, 0, 0);
+  height: 50px;
+  color: white;
+  text-decoration: none;
+  border-right: 3px solid rgb(48, 0, 0);
+}
+
+.back:hover {
+  background: rgb(48, 0, 0);
+}
+.title {
+  color: white;
+  margin-left: 20px;
 }
 
 .content {
@@ -24,23 +43,10 @@ body {
   border: 1px solid grey;
   padding: 10px;
   margin-bottom: 5px;
+  max-height: 40%;
+  overflow: scroll;
 }
 
 .careful {
   border: 1px solid red;
-}
-
-.back {
-  border: 1px solid black;
-  width: fit-content;
-  padding: 10px;
-  margin: 20px;
-  background: rgb(100, 100, 100);
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-}
-
-.back:hover {
-  background: rgb(40, 40, 40);
 }

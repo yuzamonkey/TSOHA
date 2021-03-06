@@ -17,6 +17,21 @@ body {
   margin-bottom: 10px;
 }
 
+.back_to_index {
+  display: flex;
+  align-items: center;
+  border-right: 3px solid darkslategray;
+  width: fit-content;
+  height: 50px;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.back_to_index:hover {
+  background: darkslategray;
+}
+
 h2 {
   padding: 10px;
   color: white;
@@ -77,20 +92,5 @@ form #submit-button {
 }
 
 form #submit-button:hover {
-  background: darkslategray;
-}
-
-.back_to_index {
-  display: flex;
-  align-items: center;
-  border-right: 3px solid darkslategray;
-  width: fit-content;
-  height: 50px;
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.back_to_index:hover {
   background: darkslategray;
 }
