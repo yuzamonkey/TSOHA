@@ -29,6 +29,7 @@ def index():
     counties = utils.get_counties()
     return render_template("index.html", events=selected_events, categories=categories, counties=counties)
 
+
 # users
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
@@ -120,9 +121,8 @@ def report():
         utils.add_report(title, content)
         return render_template("report.html", message="Kiitos viestistäsi")
 
+
 # events
-
-
 @app.route("/event/<int:id>")
 def event(id):
     event = utils.event_to_dictionary(events.get_event_by_id(id))
@@ -296,7 +296,7 @@ def delete_event(id):
     creator = users.get_username(event[2])
     if session["username"] != creator and not session["is_admin"]:
         return "No access"
-    image_id = events.get_image_id(id)
+    image_id = utils.get_image_id(id)
     events.delete_event(id)
     if (image_id):
         utils.delete_image(image_id)
@@ -305,9 +305,8 @@ def delete_event(id):
     else:
         return redirect("/user_info")
 
+
 # admin
-
-
 @app.route("/admin_page")
 def admin_page():
     if not users.session["is_admin"]:
@@ -351,7 +350,7 @@ def delete_user(id):
     image_ids = []
     for event in users_events:
         # delete images
-        event_image_id = events.get_image_id(event[0])
+        event_image_id = utils.get_image_id(event[0])
         if (event_image_id):
             image_ids.append(event_image_id)
         events.delete_event(event[0])

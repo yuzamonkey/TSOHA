@@ -62,7 +62,6 @@ body {
 
 .create_event {
   margin: auto;
-  background-color: darkslategray;
   border: 1px solid darkslategray;
   border-radius: 5px;
   padding: 10px;
@@ -70,7 +69,7 @@ body {
 }
 
 .create_event:hover {
-  background-color: rgb(50, 100, 100);
+  background-color: darkslategray;
   color: white;
 }
 
@@ -134,7 +133,7 @@ body {
   text-decoration: none;
   color: white;
   padding: 8px;
-  background-color: rgb(100,100,100);
+  background-color: rgb(100, 100, 100);
   border-radius: 5px;
 }
 

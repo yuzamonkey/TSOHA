@@ -137,6 +137,12 @@ def get_county_name(id):
     return county
 
 
+def get_image_id(event_id):
+    sql = "SELECT image_id FROM Events WHERE id=:event_id"
+    image_id = db.session.execute(sql, {"event_id": event_id}).fetchone()[0]
+    return image_id
+
+
 def get_image_data(id):
     sql = "SELECT data FROM images WHERE id=:id"
     image_data = db.session.execute(sql, {"id": id}).fetchone()[0]
