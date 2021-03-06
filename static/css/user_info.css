@@ -5,7 +5,7 @@
 body {
   margin: auto;
   width: auto;
-  min-width: 800px;
+  min-width: 950px;
 }
 
 .navbar {
@@ -21,7 +21,7 @@ body {
 }
 
 .back_to_index {
-  border-right: 3px solid darkslategray;
+  border-right: 1px solid darkslategray;
   width: fit-content;
   padding: 16px;
   color: white;

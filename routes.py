@@ -12,7 +12,6 @@ def index():
         category = request.args["category"]
         county = request.args["county"]
         date = request.args["date"]
-        print("DATE ", date)
         selected_events = utils.events_to_dictionaries(
             events.get_all_upcoming())
         if (category):
@@ -154,7 +153,6 @@ def create_event():
         event_name = request.form["event_name"]
         category_id = utils.get_category_id(request.form["category"])
         description = request.form["description"]
-        print("DESCRIPTION", description)
         cost = request.form["cost"]
         if (cost == "free"):
             price = "Ilmainen"
@@ -291,7 +289,6 @@ def edit_event(id):
 
 @app.route("/delete_event/<int:id>", methods=["GET", "POST"])
 def delete_event(id):
-    print("WE IN DELETE")
     event = events.get_event_by_id(id)
     creator = users.get_username(event[2])
     if session["username"] != creator and not session["is_admin"]:

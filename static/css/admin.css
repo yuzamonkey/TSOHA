@@ -24,7 +24,7 @@ body {
   height: 50px;
   color: white;
   text-decoration: none;
-  border-right: 3px solid rgb(48, 0, 0);
+  border-right: 1px solid rgb(48, 0, 0);
 }
 
 .back:hover {
