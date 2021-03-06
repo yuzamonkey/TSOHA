@@ -152,16 +152,14 @@ body {
   margin: 10px;
   width: auto;
   height: 84vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .events {
-  height: 90%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: center;
-  overflow: scroll;
 }
 
 .event {
