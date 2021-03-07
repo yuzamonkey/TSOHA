@@ -1,30 +1,30 @@
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/usernamepassword.css') }}">
-<body>
-    <div class="content">
-        <div class="header">
-            <h3>Kirjaudu sisään</h3>
-        </div>
-        {% if error: %}
-            <p>{{message}}</p>
-        {% endif %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/usernamepassword.css') }}">
 
-        {% if success: %}
-            <p>{{message}}</p>
-        {% endif %}
-        <div class="form">
-            <form action="/log_in" method="POST">
-                <p>Käyttäjätunnus:<br>
-                    <input type="text" name="username" required>
-                </p>
-                <p>Salasana:<br>
-                    <input type="password" name="password" required>
-                </p>
-                <input type="submit" value="Kirjaudu" id="submit-button">
-            </form>
-        {% if not new_user: %}
-            <p>Ei vielä käyttäjätunnusta? <a href="/sign_up">Luo käyttäjätunnus</a></p>
-        {% endif %}
-        </div>
-        <a href="/">Etusivulle</a>
+<body>
+  <div class="content">
+    <div class="header">
+      <h3>Kirjaudu sisään</h3>
     </div>
+    {% if error: %}
+    <p>{{message}}</p>
+    {% endif %}
+    {% if success: %}
+    <p>{{message}}</p>
+    {% endif %}
+    <div class="form">
+      <form action="/log_in" method="POST">
+        <p>Käyttäjätunnus:<br>
+          <input type="text" name="username" required>
+        </p>
+        <p>Salasana:<br>
+          <input type="password" name="password" required>
+        </p>
+        <input type="submit" value="Kirjaudu" id="submit-button">
+      </form>
+      {% if not new_user: %}
+      <p>Ei vielä käyttäjätunnusta? <a href="/sign_up">Luo käyttäjätunnus</a></p>
+      {% endif %}
+    </div>
+    <a href="/">Etusivulle</a>
+  </div>
 </body>

@@ -23,11 +23,10 @@
     </div>
   </div>
 
-  {% if session.suspended %}
-  <p><b>&emsp;SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
-  {% endif %}
-
   <div class="content">
+    {% if session.suspended %}
+    <p><b>&emsp;SUSPENDED ACCOUNT, RESTRICTIONS ARE APPLIED</b></p>
+    {% endif %}
     <div class="upcoming_title">
       <h2>Tulevat tapahtumat</h2>
     </div>
@@ -75,9 +74,7 @@
       {% endfor %}
     </div>
   </div>
-
 </body>
-
 
 <script>
   function validate_time() {

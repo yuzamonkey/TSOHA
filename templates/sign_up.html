@@ -1,27 +1,27 @@
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/usernamepassword.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/usernamepassword.css') }}">
 
 <body>
-    <div class="content">
-        <div class="header">
-            <h3>Luo käyttäjätunnus</h3>
-        </div>
-        {% if error: %}
-            <p>{{message}}</p>
-        {% endif %}
-        <div class="form">
-            <form action="/sign_up" method="POST">
-                <p>Käyttäjätunnus:<br>
-                    <input type="text" name="username" required maxlength="25">
-                </p>
-                <p>Salasana:<br>
-                    <input type="password" name="password" required>
-                </p>
-                <p>Salasana uudelleen:<br>
-                    <input type="password" name="password_validation" required>
-                </p>
-                <input type="submit" value="Vahvista" id="submit-button">
-            </form>
-        </div>
-        <a href="/">Etusivulle</a>
+  <div class="content">
+    <div class="header">
+      <h3>Luo käyttäjätunnus</h3>
     </div>
+    {% if error: %}
+    <p>{{message}}</p>
+    {% endif %}
+    <div class="form">
+      <form action="/sign_up" method="POST">
+        <p>Käyttäjätunnus:<br>
+          <input type="text" name="username" required maxlength="25">
+        </p>
+        <p>Salasana:<br>
+          <input type="password" name="password" required>
+        </p>
+        <p>Salasana uudelleen:<br>
+          <input type="password" name="password_validation" required>
+        </p>
+        <input type="submit" value="Vahvista" id="submit-button">
+      </form>
+    </div>
+    <a href="/">Etusivulle</a>
+  </div>
 </body>

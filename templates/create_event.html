@@ -6,30 +6,23 @@
     <h2>Luo tapahtuma</h2>
   </div>
 
-  <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data" onsubmit="return compare()">
-
+  <form name="create_event" action="/create_event" method="POST" enctype="multipart/form-data"
+    onsubmit="return compare()">
     <p>* = pakollinen</p>
-
     Tapahtuman nimi *<br><input type="text" name="event_name" maxlength="50" required> <br>
-
-
     <label for="category">Kategoria *<br></label>
     <select name="category">
       {% for category in categories %}
       <option>{{category}}
         {% endfor %}
     </select> <br>
-
     <label for="description">Kuvaus *<br></label>
     <textarea id="description" name="description" rows="10" cols="70" required></textarea><br>
-
     <input type="radio" value="free" name="cost" checked="checked">
-    <label for="free">Ilmainen</label>
-    <br>
+    <label for="free">Ilmainen</label><br>
     <input type="radio" value="paid" name="cost">
     <label for="paid">Maksullinen, </label>
     Hinta <input type="text" name="price" maxlength="10" size="12"> <br>
-
     <label for="county">Maakunta *<br></label>
     <select name="county" required>
       {% for county in counties %}
@@ -46,14 +39,11 @@
     <input type="file" name="image" accept=".jpg, .jpeg, .png">
     <br><br>
     <input id="submit-button" type="submit" value="Lähetä">
-
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-
     <br><br>
-
   </form>
-
 </body>
+
 <script>
   function validate(time) {
     console.log("Validate called")
@@ -65,6 +55,7 @@
     }
     return true;
   }
+  
   function set_ending_time() {
     var starting_time = document.forms["create_event"]["starting_time"].value;
     if (!validate(starting_time)) {
@@ -88,5 +79,4 @@
     }
     return true;
   }
-
 </script>

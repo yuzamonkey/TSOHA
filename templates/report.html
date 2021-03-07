@@ -1,20 +1,17 @@
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/report.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/report.css') }}">
 
 <body>
-    <div class="content">
-        <h3>Raportoi ylläpidolle ongelmasta</h3>
-
-        {% if message  %}
-        <p>{{message}}</p>
-        {%  endif %}
-
-        <form action="/report" method="POST">
-            Otsikko <br><input type="text" name="title" required> <br>
-            <label for="content">Kuvaile ongelmaa: <br></label>
-            <textarea name="content" rows="10" cols="70" required></textarea><br>
-            <input id="submit-button" type="submit" value="Lähetä">    
-        </form>
-    </div>
-    <a class="back_to_index" href="/">Etusivulle</a>
-
+  <div class="content">
+    <h3>Raportoi ylläpidolle ongelmasta</h3>
+    {% if message %}
+    <p>{{message}}</p>
+    {% endif %}
+    <form action="/report" method="POST">
+      Otsikko <br><input type="text" name="title" required> <br>
+      <label for="content">Kuvaile ongelmaa: <br></label>
+      <textarea name="content" rows="10" cols="70" required></textarea><br>
+      <input id="submit-button" type="submit" value="Lähetä">
+    </form>
+  </div>
+  <a class="back_to_index" href="/">Etusivulle</a>
 </body>

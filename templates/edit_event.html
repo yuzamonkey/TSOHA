@@ -8,11 +8,8 @@
 
   <form name="edit_event" action="/edit_event/{{event[0]}}" method="POST" enctype="multipart/form-data" class="form"
     onsubmit="return compare()">
-
     <p>* = pakollinen</p>
-
     Tapahtuman nimi *<br><input type="text" name="event_name" value="{{event[1]}}" maxlength="50" required> <br>
-
     <label for="category">Kategoria *<br></label>
     <select name="category">
       {% for category in categories %}
@@ -23,10 +20,8 @@
         {% endif %}
         {% endfor %}
     </select> <br>
-
     <label for="description">Kuvaus *<br></label>
     <textarea id="description" name="description" rows="10" cols="70" required>{{event[8]}}</textarea><br>
-
     {% if event[11] == "Ilmainen" %}
     <input type="radio" value="free" name="cost" checked="checked">
     <label for="free">Ilmainen</label>
@@ -42,7 +37,6 @@
     <label for="paid">Maksullinen, </label>
     Hinta <input type="text" name="price" size="12" maxlength="10" value="{{event[11]}}"> <br>
     {% endif %}
-
     <label for="county">Maakunta *<br></label>
     <select name="county">
       {% for county in counties %}
@@ -57,7 +51,7 @@
     Paikka *<br><input type="text" name="locale" maxlength="50" value="{{event[5]}}" required> <br>
     Osoite *<br><input type="text" name="address" maxlength="50" value="{{event[7]}}" required> <br>
     Alkamisaika *<br><input type="datetime-local" name="starting_time" value="{{starting_time}}" required> <br>
-    Loppumisaika <br><input type="datetime-local" name="ending_time" value="{{ending_time}}" onblur="compare()"
+    Loppumisaika *<br><input type="datetime-local" name="ending_time" value="{{ending_time}}" onblur="compare()"
       required> <br>
     <br>
     Kuvatiedosto (Sallitut tiedostomuodot: jpg, jpeg, png)<br>Aiemmin laitettu kuvatiedosto säilyy<br>
@@ -71,12 +65,9 @@
         <a href="/delete_event/{{event.id}}" class="delete" onclick="return confirm_deletion()">Poista tapahtuma</a>
       </div>
     </div>
-
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   </form>
 </body>
-
-
 
 <script>
   function confirm_deletion() {

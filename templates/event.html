@@ -2,9 +2,11 @@
 
 <body>
   <div class="content">
+
     {% if event["image_id"]%}
     <img src="/event_image/{{image_id}}" alt="Event_image" class="event_image">
     {% endif %}
+
     <div class="info_and_back_to_index">
       <div class="info">
         <p>Tapahtuman järjestäjä: {{event["creator"]}}</p>
@@ -16,17 +18,17 @@
       </div>
       <a href="/" class="back_to_index">Etusivulle</a>
     </div>
+
     <div class="title_and_description">
       <div class="title">
         <h2>{{event["name"]}}</h2>
       </div>
       <div class="description">
         {% for split in description_split %}
-          <p>{{split}}</p>
+        <p>{{split}}</p>
         {% endfor %}
       </div>
     </div>
-
+  
   </div>
-
 </body>
