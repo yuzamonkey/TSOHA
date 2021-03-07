@@ -283,7 +283,6 @@ def edit_event(id):
                 starting_time,
                 ending_time
             )
-
         return redirect("/user_info")
 
 
